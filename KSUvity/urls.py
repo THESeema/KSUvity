@@ -28,3 +28,5 @@ urlpatterns = [
     url(r'^signup/$', authentication_views.signup, name='signup'),
     
     ]
+
+    #test
