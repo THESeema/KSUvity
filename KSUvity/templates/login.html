@@ -14,7 +14,9 @@
     {% for field in form %}
       <p>
         {{ field.label_tag }}<br>
-        {{ field }}<br>
+        <span style="color: grey">{{ field }} </span>
+        
+        <br>
         {% for error in field.errors %}
           <p style="color: red">{{ error }}</p>
         {% endfor %}
@@ -26,6 +28,6 @@
     <!-- <button type="submit">Log in</button> -->
     <input type="submit" value="Log in">
     
-    <a href="{% url 'signup' %}">New to My Site? Sign up</a>
+    <a href="{% url 'signup' %}">New to KSUvity? Sign up</a>
   </form>
 {% endblock %}

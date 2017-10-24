@@ -56,6 +56,8 @@
   </div>
 </div>
 </div>
+{% url 'dashboard' as dashboard_url %}
+{% if request.get_full_path == dashboard_url %}
 <ul class="outer-nav">
 <li class="is-active">Home</li>
 <li>Activites</li>
@@ -63,6 +65,7 @@
 <li>Contact</li>
 <li>Hire us</li> -->
 </ul>
+{% endif %}
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
