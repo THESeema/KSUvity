@@ -7,7 +7,7 @@ from KSUvity.authentication.forms import SignUpForm
 
 @login_required
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'student.html')
 
 def dashboard(request):
     return render(request, 'dashboard.html')

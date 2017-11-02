@@ -21,3 +21,9 @@
 
 # admin.site.unregister(User)
 # admin.site.register(User, CustomUserAdmin)
+
+from django.contrib import admin
+from KSUvity.models import Activity
+# Register your models here.
+
+admin.site.register(Activity)
