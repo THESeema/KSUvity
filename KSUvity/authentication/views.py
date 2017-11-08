@@ -6,6 +6,8 @@ from KSUvity.authentication.forms import SignUpForm
 from django.contrib.auth import authenticate, logout, login
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
+from KSUvity.models import Activity
+from .forms import ActivityForm
 
 
 @login_required
@@ -81,3 +83,13 @@ def Login(request):
             return render(request, 'login.html',{'error':error})
     else:
         return render(request, 'login.html')
+
+def admin(request):
+    data=Activity.objects.all()
+    return render(request, 'admin.html', {"data": data})
+
+
+def post_new(request):
+ form = ActivityForm(request.POST)
+ if form.is_valid():
+    new_activity = form.save()

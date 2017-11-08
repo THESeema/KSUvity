@@ -10,6 +10,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="stylesheet" href="{% static 'css/mainin.css' %}">
 		<noscript><link rel="stylesheet" href="{% static 'css/noscript.css' %}" /></noscript>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 		<style>
 			body, html {
 				height: 100%;
@@ -31,6 +33,7 @@
 			</style>
 	</head>
 	<body class="bg">
+	{% block content %}
 
 		<!-- Wrapper-->
 			<div id="wrapper" >
@@ -63,23 +66,125 @@
 								<header>
 									<h2>My Activites</h2>
 								</header>
-								<p>
-									Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit.
-									Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-									luctus elit eget interdum.
-								</p>
+								<div class="page-header">
+            <a  href="http://127.0.0.1:8000/admin/KSUvity/activity/add/" class="btn btn-primary" id="addTask">Add Activity</a>
+        </div>
+
+        <!--	<div class="modal" id="myModal" style="margin-top:5%">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h2 class="modal-title">Activity details</h2>
+				</div>
+				<div class="modal-body">
+                 <div class="row">
+                  <div class="col-md-8">
+
+          <form method="post" action="{% url 'post_new' %}">
+            {% csrf_token %} 
+          <div class="row align-items-center mt-4">
+            <div class="col">
+                            <label class="control-label" style="color:black;">Type:</label>
+              <input type="text" class="form-control" name="type" placeholder="Type">
+            </div>
+          </div>
+
+          <div class="row align-items-center mt-4">
+                     <div class="col">
+                            <label class="control-label" style="color:black;">Title:</label>
+              <input type="text" class="form-control" name="title" placeholder="Title">
+            </div>
+          </div>
+
+          <div class="row align-items-center mt-4">
+            <div class="col">
+                            <label class="control-label" style="color:black;">Description:</label>
+              <input type="textarea" class="form-control" name="description" placeholder="Description">
+            </div>
+          </div>
+
+          <div class="row align-items-center mt-4">
+                      <div class="col">
+             <label class="control-label" style="color:black;">Owner:</label>
+              <input type="text" class="form-control" name="owner" placeholder="Owner">
+            </div>
+</div>
+
+          <div class="row align-items-center mt-4">
+            <div class="col">
+              <label class="control-label" style="color:black;">College:</label>
+              <input type="text" class="form-control" name="college" placeholder="College">
+            </div>
+            </div>
+
+             <div class="row align-items-center mt-4">
+               <div class="col">
+               <label class="control-label" style="color:black;">Location:</label>
+              <input type="text" class="form-control" name="location" placeholder="Location">
+            </div>
+             <div class="col">
+               <label class="control-label" style="color:black;">Room:</label>
+              <input type="text" class="form-control" name="room" placeholder="Room">
+            </div>
+          </div>
+
+            <div class="row align-items-center mt-4">
+            <div class="col">
+             <label class="control-label" style="color:black;">Start Date:</label>
+              <input type="datetime-local" class="form-control" name="startDate" placeholder="Start Date">
+            </div>
+               <div class="col">
+                <label class="control-label" style="color:black;">End Date:</label>
+              <input type="datetime-local" class="form-control" name="endDate" placeholder="End Date">
+            </div>
+          </div>
+
+              <div class="row align-items-center mt-4">
+            <div class="col">
+                         <label class="control-label" style="color:black;">Attendees' Capacity:</label>
+              <input type="number" class="form-control" name="attendee" placeholder="10" min="10" max="50">
+            </div>
+               <div class="col">
+                <label class="control-label" style="color:black;">Volunteers' Capacity:</label>
+              <input type="number" class="form-control" name="volunteer" placeholder="5" min="5" max="50">
+            </div>
+          </div>
+
+          <div class="row justify-content-start mt-4">
+            <div class="col">
+                    <button type="submit" class="save btn btn-default">Save</button>
+                                </div>
+          </div>
+          </form>
+
+
+
+                </div>
+             </div>
+
+
+
+				</div>
+
+</div>
+</div>
+</div> -->
 								<section>
 									<div class="row">
+									{% for actv in data %}
 										<div class="4u 12u$(mobile)">
 											<a href="#" class="image fit"><img src="{% static 'img/work-metiew-smith.jpg' %}" alt=""></a>
+											<h5>Title: {{actv.title}}</h5>
+											<h5>Description: {{actv.description}}</h5>
+											<h5>Volunteers' Capacity: {{actv.volunteer}}</h5>
+											<h5>Attendees' Capacity: {{actv.attendee}}</h5>
+											<h5>Start Date: {{actv.startDate}}</h5>
+											<h5>End Date: {{actv.endDate}}</h5>
+											<h5>Location: {{actv.location}}</h5>
+											<h5>Room: {{actv.room}}</h5>
 										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="#" class="image fit"><img src="{% static 'img/work-metiew-smith.jpg' %}" alt=""></a>
-										</div>
-										<div class="4u$ 12u$(mobile)">
-											<a href="#" class="image fit"><img src="{% static 'img/work-metiew-smith.jpg' %}" alt=""></a>
-										</div>
-							
+											{% endfor %}
 									</div>
 								</section>
 							</article>
@@ -130,6 +235,12 @@
 			<script src="{% static 'js/util.js' %}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="{% static 'js/main.js' %}"></script>
+			<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+{% endblock %}
 	</body>
 </html>

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from KSUvity.models import Activity
 
 
 class SignUpForm(UserCreationForm):
@@ -11,3 +12,9 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+
+class ActivityForm(forms.ModelForm):
+
+    class Meta:
+        model = Activity
+        fields = ('type', 'title', 'description', 'owner', 'college', 'location', 'room', 'startDate', 'endDate', 'attendee', 'volunteer', )
