@@ -32,7 +32,7 @@ from django import forms
 from django.contrib import admin
 
 from KSUvity.models import Activity
-
+import datetime
 
 class ActivityAdminForm(forms.ModelForm):
     class Meta:
@@ -41,7 +41,9 @@ class ActivityAdminForm(forms.ModelForm):
 
     def clean(self):
         if self.cleaned_data['startDate'] > self.cleaned_data['endDate']:
-            raise forms.ValidationError('Start Date must be before End Date')
+            raise forms.ValidationError('Start Date must be before the End Date')
+        if self.cleaned_data['startDate'].date() < datetime.date.today():
+            raise forms.ValidationError('The date cannot be in the past!')
         return self.cleaned_data
 
 
