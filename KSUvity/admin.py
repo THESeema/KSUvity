@@ -41,7 +41,7 @@ class ActivityAdminForm(forms.ModelForm):
 
     def clean(self):
         if self.cleaned_data['startDate'] > self.cleaned_data['endDate']:
-            raise forms.ValidationError('Start Date must be before the End Date')
+            raise forms.ValidationError('Start Date must be before End Date')
         return self.cleaned_data
 
 
