@@ -10,6 +10,7 @@ from KSUvity.models import Activity
 from .forms import ActivityForm
 
 
+
 @login_required
 def home(request):
     return render(request, 'student.html')
@@ -44,8 +45,28 @@ def signup(request):
         lastname = request.POST.get('lname')
         pass_1 = request.POST.get('password1')
         pass_2 = request.POST.get('password2')
+        if len(pass_1) < 8:
+            error = " Password must be at least 8 characters long "
+            return render(request, 'signup.html',{"error":error})
+
+        if not any(char.isdigit() for char in pass_1):
+            error = " Password must contain at least 1 digit. "
+            return render(request, 'signup.html',{"error":error})
+       
+        if not any(char.isalpha() for char in pass_1):
+            error = " Password must contain at least 1 letter. "
+            return render(request, 'signup.html',{"error":error})
+        
+        if not validateEmail(email):
+            error = " Enter a valid email "
+            return render(request, 'signup.html',{"error":error})  
+       
         if pass_1 == pass_2:
-             user = User.objects.create_user(
+
+            if User.objects.filter(username=email).exists():
+                error = "You Already Exist "
+                return render(request, 'signup.html',{"error":error})
+            user = User.objects.create_user(
                                               username=email,
                                               email=email,
                                               password=pass_1,
@@ -53,10 +74,8 @@ def signup(request):
                                               last_name=lastname,
 
                                             )
-             
-             
-             login(request, user)
-             return redirect('home')
+            login(request, user)
+            return redirect('home')
         else:
              error = " Password Mismatch "
              return render(request, 'signup.html',{"error":error})
@@ -93,3 +112,12 @@ def post_new(request):
  form = ActivityForm(request.POST)
  if form.is_valid():
     new_activity = form.save()
+
+def validateEmail( email ):
+    from django.core.validators import validate_email
+    from django.core.exceptions import ValidationError
+    try:
+        validate_email( email )
+        return True
+    except ValidationError:
+        return False
