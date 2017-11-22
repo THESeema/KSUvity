@@ -16,7 +16,7 @@ class Attendee(models.Model):
         ordering = ['student']
 
     def __str__(self):
-        return self.student
+        return '%s' % self.student
 
 @python_2_unicode_compatible
 class Volunteer(models.Model):
@@ -28,7 +28,7 @@ class Volunteer(models.Model):
         ordering = ['student']
 
     def __str__(self):
-        return self.student
+        return '%s' % self.student
 
 
 @python_2_unicode_compatible
@@ -54,6 +54,9 @@ class Activity(models.Model):
 
     def __str__(self):
         return '%s (%s)' % (self.title, self.description)
+
+    def __unicode__(self):
+        return unicode(self.user)
 
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''

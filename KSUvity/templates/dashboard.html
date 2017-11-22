@@ -9,6 +9,8 @@
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <meta http-equiv="X-UA-Compatible" content="IE=edge">
           <link rel="stylesheet" href="{% static 'css/main.css' %}">
+          <noscript><link rel="stylesheet" href="{% static 'css/noscript.css' %}" /></noscript>
+
           <style>
             body, html {
               height: 100%;
@@ -54,7 +56,7 @@
             {% if user.is_authenticated %}
             
             <div class="about about--banner" align="right">
-                <a href="{% url 'logout' %}">Logout
+                <a  class="log" href="{% url 'logout' %}">Logout
                   <span>
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
                     <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
@@ -75,6 +77,8 @@
               <span></span>
             </div>
           </header>
+
+          {% block content %}
         <nav class="l-side-nav">
           <ul class="side-nav">
             <li class="is-active"><span>Home</span></li>
@@ -141,8 +145,25 @@
                       <div class="slider--item-image">
                         <img src="{% static 'img/work-victory.jpg' %}" alt="Victory">
                       </div>
-                      <p class="slider--item-title">Victory</p>
-                      <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+                      {% for activity in data%}
+                      {% if activity.id == 1 %} 
+
+                      <p class="slider--item-title">{{activity.title}}</p>
+                      <p class="slider--item-title">{{forloop.counter}}</p>
+
+                     <form method="GET" action="{% url 'register' activity.pk %}">
+                     {% csrf_token %}
+                    <button 
+                    onClick="return showLogoutMessage()"
+                    type="submit" 
+                    class="btn btn-primary" 
+                    id="Register">Register
+                    </button>
+                    </form> 
+
+                    {% endif %}                     
+                    {%endfor%} 
+
                     </a>
                   </li>
                   <li class="slider--item slider--item-center">
@@ -150,20 +171,58 @@
                       <div class="slider--item-image">
                         <img src="{% static 'img/work-metiew-smith.jpg' %}" alt="Metiew and Smith">
                       </div>
-                      <p class="slider--item-title">Metiew &amp; Smith</p>
-                      <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+                      {% for activity in data%}
+                      {% if activity.id == 2 %}
+                      <p class="slider--item-title">{{activity.title}}</p>
+                      <p class="slider--item-description">{{forloop.counter}}</p>
+
+                      <form method="GET" action="{% url 'register' activity.pk %}">
+                     {% csrf_token %}
+                    <button 
+                    onClick="return showLogoutMessage()"
+                    type="submit" 
+                    class="btn btn-primary" 
+                    id="Register">Register
+                    </button>
+                    </form>
+
+                    {% endif %}                     
+                    {%endfor%} 
+
                     </a>
                   </li>
+
                   <li class="slider--item slider--item-right">
                     <a href="#0">
                       <div class="slider--item-image">
                         <img src="{% static 'img/work-alex-nowak.jpg' %}" alt="Alex Nowak">
                       </div>
-                      <p class="slider--item-title">Alex Nowak</p>
-                      <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+
+                    
+                  
+                      <p class="slider--item-title">Activity 3</p>
+                      <p class="slider--item-description">Activity 3 descr</p>
+
+
+              
+                   
+                    <button 
+                    onClick="return showLogoutMessage()"
+                    
+                    class="btn btn-primary" 
+                    >Register
+                    </button>
+             
+
+                
+
                     </a>
                   </li>
+
                 </ul>
+
+                <br><br><br>
+
                 <div class="slider--prev">
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                   viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
@@ -316,7 +375,7 @@
             </div>
           </li> -->
         </ul>
-
+{% endblock %}
 
       </div>
       
@@ -333,9 +392,63 @@
     </ul>
     {% endif %}
     </div>
+
+
+ <!-- <div class="modal" id="myModal" style="margin-top:5%">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3 class="modal-title">Activity Registration</h3> //change color to black
+        </div>
+        <div class="modal-body">
+          {% csrf_token %}
+          <div class="form-group has-warning">
+            <label class="control-label" for="taskName" style="color:black;">Name</label>
+            <input type="text" class="form-control" id="taskName">
+            <label class="control-label" for="focusedInput" style="color:black;">Description</label>
+            <textarea class="form-control" rows="5" id="focusedInput"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="saveButton">Register</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
     <script src="{% static 'js/functions-min.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/skel.min.js' %}"></script>
+    <script src="{% static 'js/skel-viewport.min.js' %}"></script>
+    <script src="{% static 'js/util.js' %}"></script>
+      <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+      <script src="{% static 'js/main.js' %}"></script>
+      <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/notify.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+{% block javascript %}
+<script>
+  function showLogoutMessage() {
+    $.notify("You're Successfully Registered!", "success")
+  }
+
+  $(".log").click(function() {
+    $.notify("Successfully Logged out!", "info")
+  });
+ 
+</script>
+
+{% endblock %}
     
       </body>
     </html>

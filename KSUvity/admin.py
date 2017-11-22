@@ -22,33 +22,8 @@
 # admin.site.unregister(User)
 # admin.site.register(User, CustomUserAdmin)
 
-# from django.contrib import admin
-# from KSUvity.models import Activity
-# # Register your models here.
-
-# admin.site.register(Activity)
-
-from django import forms
 from django.contrib import admin
-
 from KSUvity.models import Activity
-import datetime
+# Register your models here.
 
-class ActivityAdminForm(forms.ModelForm):
-    class Meta:
-        model = Activity
-        fields = '__all__'
-
-    def clean(self):
-        if self.cleaned_data['startDate'] > self.cleaned_data['endDate']:
-            raise forms.ValidationError('Start Date must be before the End Date')
-        if self.cleaned_data['startDate'].date() < datetime.date.today():
-            raise forms.ValidationError('The date cannot be in the past!')
-        return self.cleaned_data
-
-
-class ActivityAdmin(admin.ModelAdmin):
-    form = ActivityAdminForm
-
-
-admin.site.register(Activity, ActivityAdmin)
+admin.site.register(Activity)
