@@ -8,13 +8,19 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from KSUvity.models import Activity
 from KSUvity.models import Attendee
+from KSUvity.models import Volunteer
+
 from .forms import ActivityForm
+
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import render_to_response
 
 
 @login_required
 def home(request):
     return render(request, 'student.html')
-
 
 #def dashboard(request):
 #    return render(request, 'dashboard.html')
@@ -89,22 +95,57 @@ def admin(request):
     data=Activity.objects.all()
     return render(request, 'admin.html', {"data": data})
 
-def post_new(request):
- form = ActivityForm(request.POST)
- if form.is_valid():
-    new_activity = form.save()
 
 def dashboard(request):
     data=Activity.objects.all()
     return render(request, 'dashboard.html', {"data": data})
 
-def registerAttende(request,pk):
+def registerAttendee(request,pk):
     act = Activity.objects.get(pk=pk)
     act.save()
     attendee, _ = Attendee.objects.get_or_create(student=request.user)
     act.attendee.add(attendee)
-    return render(request, 'dashboard.html')
+    messages.success(request, 'You\'re successfully registered as an attendee!', extra_tags='alert')
+    return redirect('home/#work')
+
+def registerVolunteer(request,pk):
+    act = Activity.objects.get(pk=pk)
+    act.save()
+    volunteer, _ = Volunteer.objects.get_or_create(student=request.user)
+    act.volunteer.add(volunteer)
+    messages.success(request, 'You\'re successfully registered as a volunteer!', extra_tags='alert')
+    return redirect('home/#work')
+
+
+def cancel(request,pk):
+    act = Activity.objects.get(pk=pk)
+    act.save()
+    attendee, _ = Attendee.objects.get_or_create(student=request.user)
+    act.attendee.remove(attendee)
+    messages.success(request, 'You successfully Cancelled Your Registration!', extra_tags='alert')
+    return redirect('home/#work')
+    
 
 def home2(request):
     data=Attendee.objects.get(student=request.user)
     return render(request, 'student.html', {"data": data})
+
+
+# def reset(request):
+#     return render(request, 'reset.html')
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!',extra_tags='alert')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.',extra_tags='alert')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'change_password.html', {
+        'form': form
+    })

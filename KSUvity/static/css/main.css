@@ -43,6 +43,9 @@ body {
     margin: 0
 }
 
+
+
+
 article,
 aside,
 details,
@@ -760,7 +763,7 @@ body {
     left: 23px;
     right: 0;
     height: 100%;
-    background-color: #0f33ff;
+    background-color: #a0abeb;
     z-index: -1;
     -webkit-transition: left .2s ease-in-out;
     transition: left .2s ease-in-out

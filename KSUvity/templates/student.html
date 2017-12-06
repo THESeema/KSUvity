@@ -8,7 +8,8 @@
 		<title>{{ user.username }}</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="stylesheet" href="{% static 'css/mainin.css' %}">
+		  <link rel="stylesheet" href="{% static 'css/mainin.css' %}">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<noscript><link rel="stylesheet" href="{% static 'css/noscript.css' %}" /></noscript>
 		<style>
 			body, html {
@@ -38,9 +39,10 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<a href="#me" class="icon fa-user active"><span>Profile</span></a>
-						<a href="#work" class="icon fa-folder"><span>My Activities</span></a>
-						<a href="#contact" class="icon fa-calendar"><span>Upcoming</span></a>
-						<a href="{% url 'dashboard' %}" class="icon fa-home"><span>Dashboard</span></a>
+						<a href="#work" class="icon fa-calendar"><span>My Activities</span></a>
+						<!-- <a href="#contact" class="icon fa-calendar"><span>Upcoming</span></a> -->
+						<a style="text-decoration:none" href="{% url 'dashboard' %}" class="icon fa-home"><span>Dashboard</span></a>
+						<a style="text-decoration:none" href="{% url 'logout' %}" class="icon fa-sign-out"><span>Logout</span></a>
 					</nav>
 
 				<!-- Main -->
@@ -51,21 +53,27 @@
 								<header>
 									<h1>Welcome, {{ user.get_full_name }}</h1>
 									<p>Your email address: {{ user.email }}</p>
+									
+									<p style="margin-top: 100px;">	<a href="{% url 'change_password' %}" class="btn btn-info" role="button">Change Password</a>
+									</p>
 								</header>
+								
 								<a href="#work" class="jumplink pic">
 									<span class="arrow icon fa-chevron-right"><span>See my work</span></span>
-									<img src="{% static 'img/about-visual.png' %}" alt="" />
+									<!-- <img src="{% static 'img/about-visual.png' %}" alt="" /> -->
+									<img src="{% static 'img/girl.png' %}" alt="" />
+
 								</a>
+								
 							</article>
 
 						<!-- Work -->
 							<article id="work" class="panel">
 								<header>
+										{% include 'messages.html' %}
 									<h2>My Activites</h2>
 								</header>
-								<p>
-											<h5>{{data.title}}</h5>
-								</p>
+							
 								<section>
 									<div class="row">
 										<div class="4u 12u$(mobile)">
