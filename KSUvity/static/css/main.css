@@ -655,7 +655,7 @@ body {
 }
 
 .side-nav li:nth-child(2)::before {
-    content: "02"
+    content: "Activites"
 }
 
 .side-nav li:nth-child(3)::before {

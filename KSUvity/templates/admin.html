@@ -233,7 +233,7 @@ figure.effect-zoe:hover p.icon-links a {
 						<a href="#me" class="icon fa-user active"><span>Profile</span></a>
 						<a href="#work" class="icon fa-calendar"><span>My Activities</span></a>
 						<!-- <a href="#contact" class="icon fa-calendar"><span>Upcoming</span></a> -->
-						<a href="{% url 'dashboard' %}" class="icon fa-home"><span>Dashboard</span></a>
+						<a style="text-decoration:none" href="{% url 'dashboard' %}" class="icon fa-home"><span>Dashboard</span></a>
 					</nav>
 
 				<!-- Main -->
@@ -242,7 +242,7 @@ figure.effect-zoe:hover p.icon-links a {
 						<!-- Me -->
 							<article id="me" class="panel">
 								<header>
-									<h1>Welcome, {{ user.get_full_name }}</h1>
+									<h1>Welcome, {{ user.get_username }}</h1>
 									<p>Your email address: {{ user.email }}</p>
 
 																		<p style="margin-top: 100px;">	<a href="{% url 'change_password' %}" class="btn btn-info" role="button">Change Password</a>
@@ -251,7 +251,7 @@ figure.effect-zoe:hover p.icon-links a {
 
 								<a href="#work" class="jumplink pic">
 									<span class="arrow icon fa-chevron-right"><span>See my work</span></span>
-									<img src="{% static 'img/about-visual.png' %}" alt="" />
+									<!-- <img src="{% static 'img/about-visual.png' %}" alt="" /> -->
 								</a>
 							</article>
 
