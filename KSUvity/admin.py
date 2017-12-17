@@ -23,7 +23,18 @@
 # admin.site.register(User, CustomUserAdmin)
 
 from django.contrib import admin
+from django import forms
 from KSUvity.models import Activity
 # Register your models here.
 
-admin.site.register(Activity)
+class ActivityForm(forms.ModelForm):
+
+    class Meta:
+        model = Activity
+        exclude = ['attendee', 'volunteer', 'modified_time', ]
+
+class ActivityAdmin(admin.ModelAdmin):
+    exclude = ['attendee', 'volunteer', 'modified_time', ]
+    form = ActivityForm
+
+admin.site.register(Activity, ActivityAdmin)

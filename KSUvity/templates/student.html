@@ -10,8 +10,441 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		  <link rel="stylesheet" href="{% static 'css/mainin.css' %}">
 		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">   
+              <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+
+
+
 		<noscript><link rel="stylesheet" href="{% static 'css/noscript.css' %}" /></noscript>
+
+
+    <script>
+
+$(document).ready(function() { 
+
+(function ($) { 
+$('.tab ul.tabs li a').click(function (g) { 
+var tab = $(this).closest('.tab'), 
+index = $(this).closest('li').index();
+tab.find('ul.tabs > li').removeClass('current');
+$(this).closest('li').addClass('current');
+tab.find('.tab_content').find('div.tabs_item').not('div.tabs_item:eq(' + index + ')').slideUp(1000);
+tab.find('.tab_content').find('div.tabs_item:eq(' + index + ')').slideDown(1000);
+g.preventDefault();
+} );
+})(jQuery);
+
+});
+</script>
+
 		<style>
+@import url(https://fonts.googleapis.com/css?family=BenchNine:700);
+
+body:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2980b9 0%, #9B59B6 100%);
+  background-size: 100% auto;
+  opacity: 0;
+  transition: all .65s ease-in-out;
+
+}
+
+
+
+
+.snip1535 {
+  background-color: rgb(0,159,223);
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'BenchNine', Arial, sans-serif;
+  font-size: 1em;
+  font-size: 22px;
+  line-height: 1em;
+  margin: 15px 60px;
+  margin-top:40px;
+  outline: none;
+  padding: 12px 40px 10px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.snip1535:before,
+.snip1535:after {
+  border-color: transparent;
+  transition: all 0.25s;
+  border-style: solid;
+  border-width: 0;
+  content: "";
+  height: 24px;
+  position: absolute;
+  width: 24px;
+}
+.snip1535:before {
+  border-color: #FFD700;
+  border-right-width: 2px;
+  border-top-width: 2px;
+  right: -5px;
+  top: -5px;
+}
+
+.snip1535:after {
+  border-bottom-width: 2px;
+  border-color: #FFD700;
+  border-left-width: 2px;
+  bottom: -5px;
+  left: -5px;
+}
+.snip1535:hover:before,
+.snip1535:hover:after{
+  height: 100%;
+  width: 100%;
+}
+
+.snip1535:hover{
+text-decoration:none;
+color: #FFD700;
+}
+/*.container{
+margin-left:80px;
+}*/
+
+/*h1,h2,h3,h4,h5,h6{
+  font-family:Poppins;
+  color:   rgb(0,159,223);
+}
+
+p{
+    color: rgb(190,190,190);
+    font-size:20px;
+    line-height:35px;
+
+}*/
+
+ 
+ 
+.valueUL{
+margin-top:20px;
+}
+/* img{
+  width:100%;
+  margin-left:0px;
+  margin-top:0px ;
+  height:670px;
+}*/
+
+.backbb{
+  background:#f1f1f1;
+  height:100px;
+ margin-top:-120px;
+}
+#showcase .showcase-right{
+  margin-top:90px;
+}
+#testimonial{
+  padding: 20px 0 30px 0;
+  text-align:center;
+}
+
+
+#info1 .info-right{
+  margin-top:90px;
+}
+
+#info2{
+  margin:20px 0 60px 0;
+}
+.n1{
+margin-left:100px;
+}
+
+#center{
+margin-left:45%;
+}
+
+.special{
+color:  rgb(0,159,223);
+padding-left:7px;
+}
+
+
+.tab {
+padding-top: 50px;
+margin-bottom: 200px;
+position: relative;
+overflow: hidden;
+width: 900px;;
+margin: 0 auto;
+line-height: 1.5;
+font-weight: 300;
+color: #888;
+-webkit-font-smoothing: antialiased;
+}
+
+.tabs {
+display: table;
+position: relative;
+overflow: hidden;
+margin: 0;
+width: 900px;
+}
+/*li {
+float: left;
+line-height: 38px;
+overflow: hidden;
+padding: 30px;
+position: relative;
+width:33.3%;
+margin-top:-40px;
+}
+
+a {
+background-color: #eff0f2;
+border-bottom: 1px solid #fff;
+color: #888;
+font-weight: 500;
+display: block;
+letter-spacing: 0;
+outline: none;
+padding: 0 20px;
+text-decoration: none;
+-webkit-transition: all 0.2s ease-in-out;
+-moz-transition: all 0.2s ease-in-out;
+transition: all 0.2s ease-in-out;
+border-bottom: 2px solid $green;
+}*/
+
+
+.tabs_item {
+display: none;
+padding: 30px 0;
+}
+
+h4 {
+font-weight: bold;
+color: $green;
+    font-size: 20px;
+}
+
+
+
+.current a {
+color: #FFD700;
+text-decoration: none;
+
+}
+
+
+.testimonial{
+  padding: 20px 0 30px 0;
+  text-align:center;
+}
+
+
+
+
+
+.swe444{
+margin-top:3px;
+float:left;
+}
+.team-member {
+    background: #fff;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    border: 0.5px solid rgb(190,190,190);
+    float:left;
+   position: relative;
+   width:100%;
+   /* margin-left:5px; */
+margin-top:5px;
+    
+}
+
+.nouf{
+margin-top:50px;
+margin-left:10px;
+width:100%;
+}
+.team-member .team-photo {
+    background: #fff;
+    min-height: 200px;
+    margin: 0 auto;
+    padding: 24px 24px 32px 24px;
+    width:100%;
+}
+.team-member .team-attrs {
+    padding: 2px 16px 16px 16px;
+    color: #303030;
+}
+
+.team-member .team-attrs .team-name {
+    font-size: 21px;
+}
+
+.team-member .team-attrs .team-position {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #a7a7a7;
+}
+.team-member .team-content {
+    color: #303030;
+    opacity: .8;
+    padding: 16px 24px 40px 24px;
+}
+
+.team-member:hover {
+    box-shadow: 2px 3px 9px rgba(0, 0, 0, 0.2);
+}
+
+
+/*------------------------------------------------------------------
+[10. Hover Effects]
+*/
+.item-wrap {
+    margin-bottom: 30px;
+    
+}
+figure {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+figure img {
+    position: relative;
+    opacity: 1.0;
+}
+figure figcaption {
+    padding: 1.0em;
+    color: #303030;
+    text-transform: uppercase;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+figure figcaption > .fig-description a {
+    z-index: 1000;
+    text-indent: 200%;
+    white-space: nowrap;
+    font-size: 0;
+}
+
+figure figcaption:before,
+figure figcaption:after {
+    pointer-events: none;
+}
+figure figcaption,
+figure figcaption > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+figure h3 {
+    word-spacing: -0.15em;
+    font-family: "Montserrat", sans-serif;
+}
+
+figure h3 span {
+    font-family: "Montserrat", sans-serif;
+}
+figure h3,
+figure p {
+    margin: 0;
+}
+
+figure p {
+    letter-spacing: 1px;
+    font-size: 68.5%;
+}
+
+/* Team Hover */
+
+figure.effect-zoe {
+    margin: 0;
+    width: 100%;
+    height: auto;
+    min-width: 200px;
+    max-height: none;
+    max-width: none;
+    float: none;
+    
+}
+figure.effect-zoe img {
+    display: inline-block;
+    opacity: 1;
+}
+
+figure.effect-zoe p.icon-links {
+    margin: 0px;
+}
+
+figure.effect-zoe p.icon-links a {
+    color: #fff;
+    -webkit-transition: -webkit-transform 0.35s;
+    transition: transform 0.35s;
+    -webkit-transform: translate3d(0, 200%, 0);
+    transform: translate3d(0, 200%, 0);
+}
+figure.effect-zoe p.icon-links a i::before {
+    color: #fff;
+    font-size: 24px;
+    display: inline-block;
+    padding: 15px 10px;
+    margin-left: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+figure.effect-zoe p.icon-links a:hover i::before {
+    color: rgb(190,190,190);
+}
+
+figure.effect-zoe p.phone-number a {
+    color: #fff;
+    font-size: 12px;
+}
+
+figure.effect-zoe p.phone-number a:hover {
+    color: #f2f2f2;
+    text-decoration: none;
+}
+
+figure.effect-zoe figcaption {
+    top: auto;
+    bottom: 0;
+    padding: 0;
+    height: 8em;
+    background: #a7a7a7;
+    border-top: 3px solid #fff;
+    color: #5d5d5d;
+    transition: transform 0.5s;
+    transform: translate3d(0, 100%, 0);
+}
+figure.effect-zoe:hover figcaption,
+figure.effect-zoe:hover h2,
+figure.effect-zoe:hover p.icon-links a {
+    transform: translate3d(0, 0, 0);
+}
+
+
+
+
+
+
+
 			body, html {
 				height: 100%;
 				margin: 0;
@@ -19,7 +452,7 @@
 			
 			.bg {
 				/* The image used */
-				background-image: url("{% static 'img/bg_3.svg' %}");
+				background-image: url("{% static 'img/profile.jpg' %}");
 			
 				/* Full height */
 				height: 100%; 
@@ -29,6 +462,84 @@
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
+
+      btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 10px 16px;
+}
+
+  
+.btn-lg {
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: gray;
+  border-color: #285e8e;
+}
+
+/***********************
+  ROUND BUTTONS
+************************/
+.round {
+  border-radius: 24px;
+}
+
+/***********************
+  CUSTON BTN VALUES
+************************/
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+
+.btn-primary {
+    background: #F47F18;
+    color: #ffffff;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: grays;
+}
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
 			</style>
 	</head>
 	<body class="bg">
@@ -37,6 +548,7 @@
 			<div id="wrapper" >
 
 				<!-- Nav -->
+
 					<nav id="nav">
 						<a href="#me" class="icon fa-user active"><span>Profile</span></a>
 						<a href="#work" class="icon fa-calendar"><span>My Activities</span></a>
@@ -50,6 +562,7 @@
 
 						<!-- Me -->
 							<article id="me" class="panel">
+
 								<header>
 									<h1>Welcome, {{ user.get_full_name }}</h1>
 									<p>Your email address: {{ user.email }}</p>
@@ -68,26 +581,229 @@
 							</article>
 
 						<!-- Work -->
-							<article id="work" class="panel">
+							<article id="work" class="panel" style="background-color:pink;">
 								<header>
 										{% include 'messages.html' %}
-									<h2>My Activites</h2>
-								</header>
-							
-								<section>
-									<div class="row">
-										<div class="4u 12u$(mobile)">
-											<a href="#" class="image fit"><img src="{% static 'img/work-metiew-smith.jpg' %}" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="#" class="image fit"><img src="{% static 'img/work-metiew-smith.jpg' %}" alt=""></a>
-										</div>
-										<div class="4u$ 12u$(mobile)">
-											<a href="#" class="image fit"><img src="{% static 'img/work-metiew-smith.jpg' %}" alt=""></a>
-										</div>
-							
-									</div>
-								</section>
+									<h1 style="text-align: center;">My Activites</h1>
+</header>
+
+ <div class="tab" style="width:100%;text-align:center;">
+<ul class="tabs" style="background:#f1f1f1;margin-left: 0px;">
+<li><a href="#" class="snip1535" style="float:left;" >UPCOMING</a></li>
+<li><a href="#" class="snip1535"  style="float:left;">HISTORY</a></li>
+</ul> <!-- / tabs -->
+
+<div class="tab_content">
+
+<div class="tabs_item">
+
+                <div class="page-header">       
+                  <h3> Upcoming Activities</h3>
+                 <h4> Attending: </h4>
+
+            <div class="row">
+                {% for actv in upcomingAsAttendee %}
+                <div class="col-md-6">                                              
+                               
+                                  <div class="w3-card-4 swe444" style="float:left;width:100%;">
+                                                        <header class="w3-container w3-light-blue">
+                                                          <h3>{{actv.title}}</h3>
+                                                        </header>
+                                                        <div class="w3-container" style=" background:white;">
+                                                          <p style="text-align:center; margin-top:-15px"> <i class="fa fa-bar-chart"></i><span>  </span>   {{actv.type}}</p>
+                                                          <hr>
+                                                          <img src="http://www.bebetterdeveloper.com/img/post_img/python-logo.png" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
+                                                      <p style="margin-top:-20px;"> <i class="fa fa-file-text  Try it -o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.description}} </span></p>
+                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}}  </span></p>
+                          <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.startDate}} </span></p>
+                                                        </div>
+                                                    
+<!--                 <form><button class="w3-button w3-block w3-pink block" style="float:left; background-color:white;"> Cancel</button></form>
+ -->                                                    
+                                                    
+                                     
+                                      
+                                   
+                   <form method="GET" action="{% url 'cancel' actv.pk %}">
+                                           {% csrf_token %}
+                                          <button 
+                                          onClick="return showLogoutMessage()"
+                                          type="submit" 
+                                          class="w3-button w3-block w3-pink block" 
+                                          id="Register"  style="float:left;margin-top:0px; ">Cancel
+                                          </button>
+                                          </form>  
+                                                      </div>
+
+
+
+                </div>
+                {%endfor%}                
+              </div>
+
+
+  <div class="page-header">       
+           <h4> Volunteering: </h4>
+            <div class="row">
+
+                {% for actv in upcomingAsVolunteer %}
+                              <div class="col-md-6">                                              
+                               
+                                  <div class="w3-card-4 swe444" style="float:left;width:100%;">
+                                                        <header class="w3-container w3-light-blue">
+                                                          <h3>{{actv.title}}</h3>
+                                                        </header>
+                                                        <div class="w3-container" style=" background:white;">
+                                                          <p style="text-align:center; margin-top:-15px"> <i class="fa fa-bar-chart"></i><span>  </span>   {{actv.type}}</p>
+                                                          <hr>
+                                                          <img src="http://www.bebetterdeveloper.com/img/post_img/python-logo.png" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
+                                                      <p style="margin-top:-20px;"> <i class="fa fa-file-text  Try it -o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.description}} </span></p>
+                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}}  </span></p>
+                          <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.startDate}} </span></p>
+                                                        </div>
+                                                    
+<!--                 <form><button class="w3-button w3-block w3-pink block" style="float:left; background-color:white;"> Cancel</button></form>
+ -->                                                    
+                                                    
+                                     
+                                      
+                                   
+                   <form method="GET" action="{% url 'cancel' actv.pk %}">
+                                           {% csrf_token %}
+                                          <button 
+                                          onClick="return showLogoutMessage()"
+                                          type="submit" 
+                                          class="w3-button w3-block w3-pink block" 
+                                          id="Register"  style="float:left;margin-top:0px; ">Cancel
+                                          </button>
+                                          </form>  
+                                                      </div>
+
+
+
+                </div>
+                {%endfor%}                
+              </div>
+
+</div> <!-- / tabs_item -->
+
+<div class="tabs_item">
+
+              <div class="page-header">       
+                  <h3>Activities' History</h3>
+
+            <div class="row">
+                        <h4> Attended in: </h4>
+
+                {% for actv in HistoryOfAttendance %}
+                                
+<div class="col-md-6">                                              
+                               
+                                  <div class="w3-card-4 swe444" style="float:left;width:100%;">
+                                                        <header class="w3-container w3-light-blue">
+                                                          <h3>{{actv.title}}</h3>
+                                                        </header>
+                                                        <div class="w3-container" style=" background:white;">
+                                                          <p style="text-align:center; margin-top:-15px"> <i class="fa fa-bar-chart"></i><span>  </span>   {{actv.type}}</p>
+                                                          <hr>
+                                                          <img src="http://www.bebetterdeveloper.com/img/post_img/python-logo.png" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
+                                                      <p style="margin-top:-20px;"> <i class="fa fa-file-text  Try it -o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.description}} </span></p>
+                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}}  </span></p>
+                          <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.startDate}} </span></p>
+                                                        </div>
+                                                    
+<!--                 <form><button class="w3-button w3-block w3-pink block" style="float:left; background-color:white;"> Cancel</button></form>
+ -->                                                    
+                                                    
+                                     
+                                      
+                                   
+                   <form method="GET" action="{% url 'cancel' actv.pk %}">
+                                           {% csrf_token %}
+                                          <button 
+                                          onClick="return showLogoutMessage()"
+                                          type="submit" 
+                                          class="w3-button w3-block w3-pink block" 
+                                          id="Register"  style="float:left;margin-top:0px; ">Cancel
+                                          </button>
+                                          </form>  
+                                                      </div>
+
+
+
+                </div>
+
+                                         
+                {%endfor%}                
+              </div>
+
+
+  <div class="page-header">       
+
+            <div class="row">
+            <h4> Volunteered in: </h4>
+                {% for actv in HistoryOfVolunteer %}
+                              
+                                   <div class="col-md-6">                                              
+                               
+                                  <div class="w3-card-4 swe444" style="float:left;width:100%;">
+                                                        <header class="w3-container w3-light-blue">
+                                                          <h3>{{actv.title}}</h3>
+                                                        </header>
+                                                        <div class="w3-container" style=" background:white;">
+                                                          <p style="text-align:center; margin-top:-15px"> <i class="fa fa-bar-chart"></i><span>  </span>   {{actv.type}}</p>
+                                                          <hr>
+                                                          <img src="http://www.bebetterdeveloper.com/img/post_img/python-logo.png" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
+                                                      <p style="margin-top:-20px;"> <i class="fa fa-file-text  Try it -o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.description}} </span></p>
+                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}}  </span></p>
+                          <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.startDate}} </span></p>
+                                                        </div>
+                                                    
+<!--                 <form><button class="w3-button w3-block w3-pink block" style="float:left; background-color:white;"> Cancel</button></form>
+ -->                                                    
+                                                    
+                                     
+                                      
+                                   
+                   <form method="GET" action="{% url 'cancel' actv.pk %}">
+                                           {% csrf_token %}
+                                          <button 
+                                          onClick="return showLogoutMessage()"
+                                          type="submit" 
+                                          class="w3-button w3-block w3-pink block" 
+                                          id="Register"  style="float:left;margin-top:0px; ">Cancel
+                                          </button>
+                                          </form>  
+                                                      </div>
+
+
+
+                </div>
+                                   
+                {%endfor%}                
+              </div>
+
+</div> <!-- / tabs_item -->
+
+<div class="tabs_item">
+<img  src="Untitled_burned.png"
+style=" width: 250px;
+float: left;
+margin-right: 30px;
+"
+>
+<h2>VISION</h2>
+<p>bLA BLA BLA
+</p> </div> <!-- / tabs_item -->
+</div> <!-- / tab_content -->
+</div> <!-- / tab -->
+
+
+
+
+
+
+
 							</article>
 
 						<!-- Contact -->
@@ -123,11 +839,27 @@
 				<!-- Footer -->
 					<div id="footer">
 						<ul class="copyright">
-							<li>&copy; King Saud University.
+							<li style="color:white">&copy; King Saud University.
 						</ul>
 					</div>
 
 			</div>
+
+			<script>
+
+function displayText(x){
+  var par = document.getElementById("AJ2") ;
+  par.setAttribute("style","display:block");
+  par.innerHTML=x;
+  }
+  
+  function hideText(y){
+  var par = document.getElementById("AJ2") ;
+  par.setAttribute("style","visibility:hidden");
+  
+  }
+        
+        </script>
 
 		<!-- Scripts -->
 			<script src="{% static 'js/jquery.min.js' %}"></script>

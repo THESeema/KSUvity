@@ -1,5 +1,3 @@
-
-
 {% load staticfiles %}
 <!DOCTYPE HTML>
 
@@ -11,8 +9,200 @@
           <link rel="stylesheet" href="{% static 'css/mainin.css' %}">
 		<noscript><link rel="stylesheet" href="{% static 'css/noscript.css' %}" /></noscript>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">        
+
 
 		<style>
+
+.team-member {
+    background: #fff;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    border: 0.5px solid rgb(190,190,190);
+    float:left;
+   position: relative;
+   width:100%;
+   /* margin-left:5px; */
+margin-top:5px;
+    
+}
+
+.nouf{
+margin-top:50px;
+margin-left:10px;
+width:100%;
+}
+.team-member .team-photo {
+    background: #fff;
+    min-height: 200px;
+    margin: 0 auto;
+    padding: 24px 24px 32px 24px;
+    width:100%;
+}
+.team-member .team-attrs {
+    padding: 2px 16px 16px 16px;
+    color: #303030;
+}
+
+.team-member .team-attrs .team-name {
+    font-size: 21px;
+}
+
+.team-member .team-attrs .team-position {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #a7a7a7;
+}
+.team-member .team-content {
+    color: #303030;
+    opacity: .8;
+    padding: 16px 24px 40px 24px;
+}
+
+.team-member:hover {
+    box-shadow: 2px 3px 9px rgba(0, 0, 0, 0.2);
+}
+
+
+/*------------------------------------------------------------------
+[10. Hover Effects]
+*/
+.item-wrap {
+    margin-bottom: 30px;
+    
+}
+figure {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+figure img {
+    position: relative;
+    opacity: 1.0;
+}
+figure figcaption {
+    padding: 1.0em;
+    color: #303030;
+    text-transform: uppercase;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+figure figcaption > .fig-description a {
+    z-index: 1000;
+    text-indent: 200%;
+    white-space: nowrap;
+    font-size: 0;
+}
+
+figure figcaption:before,
+figure figcaption:after {
+    pointer-events: none;
+}
+figure figcaption,
+figure figcaption > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+figure h3 {
+    word-spacing: -0.15em;
+    font-family: "Montserrat", sans-serif;
+}
+
+figure h3 span {
+    font-family: "Montserrat", sans-serif;
+}
+figure h3,
+figure p {
+    margin: 0;
+}
+
+figure p {
+    letter-spacing: 1px;
+    font-size: 68.5%;
+}
+
+/* Team Hover */
+
+figure.effect-zoe {
+    margin: 0;
+    width: 100%;
+    height: auto;
+    min-width: 200px;
+    max-height: none;
+    max-width: none;
+    float: none;
+    
+}
+figure.effect-zoe img {
+    display: inline-block;
+    opacity: 1;
+}
+
+figure.effect-zoe p.icon-links {
+    margin: 0px;
+}
+
+figure.effect-zoe p.icon-links a {
+    color: #fff;
+    -webkit-transition: -webkit-transform 0.35s;
+    transition: transform 0.35s;
+    -webkit-transform: translate3d(0, 200%, 0);
+    transform: translate3d(0, 200%, 0);
+}
+figure.effect-zoe p.icon-links a i::before {
+    color: #fff;
+    font-size: 24px;
+    display: inline-block;
+    padding: 15px 10px;
+    margin-left: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+figure.effect-zoe p.icon-links a:hover i::before {
+    color: rgb(190,190,190);
+}
+
+figure.effect-zoe p.phone-number a {
+    color: #fff;
+    font-size: 12px;
+}
+
+figure.effect-zoe p.phone-number a:hover {
+    color: #f2f2f2;
+    text-decoration: none;
+}
+
+figure.effect-zoe figcaption {
+    top: auto;
+    bottom: 0;
+    padding: 0;
+    height: 8em;
+    background: #a7a7a7;
+    border-top: 3px solid #fff;
+    color: #5d5d5d;
+    transition: transform 0.5s;
+    transform: translate3d(0, 100%, 0);
+}
+figure.effect-zoe:hover figcaption,
+figure.effect-zoe:hover h2,
+figure.effect-zoe:hover p.icon-links a {
+    transform: translate3d(0, 0, 0);
+}
+
+
+
+
+
+
+
 			body, html {
 				height: 100%;
 				margin: 0;
@@ -44,7 +234,6 @@
 						<a href="#work" class="icon fa-calendar"><span>My Activities</span></a>
 						<!-- <a href="#contact" class="icon fa-calendar"><span>Upcoming</span></a> -->
 						<a href="{% url 'dashboard' %}" class="icon fa-home"><span>Dashboard</span></a>
-						<a href="{% url 'logout' %}" class="icon fa-sign-out"><span>Logout</span></a>
 					</nav>
 
 				<!-- Main -->
@@ -53,12 +242,16 @@
 						<!-- Me -->
 							<article id="me" class="panel">
 								<header>
-									<h1>Welcome, {{ user.username }}</h1>
+									<h1>Welcome, {{ user.get_full_name }}</h1>
 									<p>Your email address: {{ user.email }}</p>
+
+																		<p style="margin-top: 100px;">	<a href="{% url 'change_password' %}" class="btn btn-info" role="button">Change Password</a>
+									</p>
 								</header>
+
 								<a href="#work" class="jumplink pic">
 									<span class="arrow icon fa-chevron-right"><span>See my work</span></span>
-									<!-- <img src="{% static 'img/about-visual.png' %}" alt="" /> -->
+									<img src="{% static 'img/about-visual.png' %}" alt="" />
 								</a>
 							</article>
 
@@ -68,125 +261,133 @@
 									<h2>My Activites</h2>
 								</header>
 								<div class="page-header">
-<center><a class="btn btn-primary" id="addTask" data-toggle="modal" data-target="#myModal">Register</a></center>        </div>
+<center><a class="btn btn-warning" id="addTask"  href="http://127.0.0.1:8000/admin/KSUvity/activity/add/">Add An Activity</a></center>        </div>
 
-        <!--	<div class="modal" id="myModal" style="margin-top:5%">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h2 class="modal-title">Activity details</h2>
-				</div>
-				<div class="modal-body">
-                 <div class="row">
-                  <div class="col-md-8">
+       									<h3> Upcoming Activities</h3>
 
-          <form method="post" action="{% url 'post_new' %}">
-            {% csrf_token %} 
-          <div class="row align-items-center mt-4">
-            <div class="col">
-                            <label class="control-label" style="color:black;">Type:</label>
-              <input type="text" class="form-control" name="type" placeholder="Type">
-            </div>
-          </div>
 
-          <div class="row align-items-center mt-4">
-                     <div class="col">
-                            <label class="control-label" style="color:black;">Title:</label>
-              <input type="text" class="form-control" name="title" placeholder="Title">
-            </div>
-          </div>
+            <div class="row">
+								{% for actv in upcoming %}
+				
 
-          <div class="row align-items-center mt-4">
-            <div class="col">
-                            <label class="control-label" style="color:black;">Description:</label>
-              <input type="textarea" class="form-control" name="description" placeholder="Description">
-            </div>
-          </div>
+				<div class="col-md-6">                                              
+                               
+                                  <div class="w3-card-4 swe444" style="float:left;width:100%;">
+                                                        <header class="w3-container w3-light-blue">
+                                                          <h3>{{actv.title}}</h3>
+                                                        </header>
+                                                        <div class="w3-container" style=" background:white;">
+                                                          <p style="text-align:center; margin-top:-15px"> <i class="fa fa-bar-chart"></i><span>  </span>   {{actv.type}}</p>
+                                                          <hr>
+                                                          <img src="http://www.bebetterdeveloper.com/img/post_img/python-logo.png" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
+                                                      <p style="margin-top:-20px;"> <i class="fa fa-file-text  Try it -o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.description}} </span></p>
+                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}}  </span></p>
+                          <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.startDate}} </span></p>
+                          <p> <i class="fa fa-users" style="margin-left:8px;"></i><span style="margin-left:9px;"> Registered Attendees: </span></p>
 
-          <div class="row align-items-center mt-4">
-                      <div class="col">
-             <label class="control-label" style="color:black;">Owner:</label>
-              <input type="text" class="form-control" name="owner" placeholder="Owner">
-            </div>
-</div>
 
-          <div class="row align-items-center mt-4">
-            <div class="col">
-              <label class="control-label" style="color:black;">College:</label>
-              <input type="text" class="form-control" name="college" placeholder="College">
-            </div>
-            </div>
+                          {% for attendee in actv.attendee.all %} 
 
-             <div class="row align-items-center mt-4">
-               <div class="col">
-               <label class="control-label" style="color:black;">Location:</label>
-              <input type="text" class="form-control" name="location" placeholder="Location">
-            </div>
-             <div class="col">
-               <label class="control-label" style="color:black;">Room:</label>
-              <input type="text" class="form-control" name="room" placeholder="Room">
-            </div>
-          </div>
+                          <p><span style="margin-left:9px;"> {{attendee}} </span></p>
 
-            <div class="row align-items-center mt-4">
-            <div class="col">
-             <label class="control-label" style="color:black;">Start Date:</label>
-              <input type="datetime-local" class="form-control" name="startDate" placeholder="Start Date">
-            </div>
-               <div class="col">
-                <label class="control-label" style="color:black;">End Date:</label>
-              <input type="datetime-local" class="form-control" name="endDate" placeholder="End Date">
-            </div>
-          </div>
 
-              <div class="row align-items-center mt-4">
-            <div class="col">
-                         <label class="control-label" style="color:black;">Attendees' Capacity:</label>
-              <input type="number" class="form-control" name="attendee" placeholder="10" min="10" max="50">
-            </div>
-               <div class="col">
-                <label class="control-label" style="color:black;">Volunteers' Capacity:</label>
-              <input type="number" class="form-control" name="volunteer" placeholder="5" min="5" max="50">
-            </div>
-          </div>
+                          {% endfor %}
 
-          <div class="row justify-content-start mt-4">
-            <div class="col">
-                    <button type="submit" class="save btn btn-default">Save</button>
-                                </div>
-          </div>
-          </form>
+
+                         {% if actv.attendee.count == 0 %}
+
+                          <p><span style="margin-left:9px;"> None </span></p>
+
+                          {% endif %}
+
+                         <p>Total: {{actv.attendee.count}}</p>
+
+
+                         <p> <i class="fa fa-users" style="margin-left:8px;"></i><span style="margin-left:9px;"> Registered Volunteers: </span></p>
+
+
+                          {% for volunteer in actv.volunteer.all %} 
+
+                          <p><span style="margin-left:9px;"> {{volunteer}} </span></p>
+
+
+                          {% endfor %}
+
+
+                          {% if actv.volunteer.count == 0 %}
+
+                          <p><span style="margin-left:9px;"> None </span></p>
+
+                          {% endif %}
+
+                          <p>Total: {{actv.volunteer.count}}</p>
+
+                                                        </div>
+                                                    
+<!--                 <form><button class="w3-button w3-block w3-pink block" style="float:left; background-color:white;"> Cancel</button></form>
+ -->                                                    
+                                                    
+                                     
+                                      
+                                   
+                
+                                                      </div>
 
 
 
-                </div>
-             </div>
+								</div>
+								{%endfor%} 								
+							</div>
+
+
+<br><br>
+      									<h3> Passed Activities</h3>
+
+
+            <div class="row">
+
+{% for actv in history %}
+
+<div class="col-md-6">                                              
+                               
+                                  <div class="w3-card-4 swe444" style="float:left;width:100%;">
+                                                        <header class="w3-container w3-light-blue">
+                                                          <h3>{{actv.title}}</h3>
+                                                        </header>
+                                                        <div class="w3-container" style=" background:white;">
+                                                          <p style="text-align:center; margin-top:-15px"> <i class="fa fa-bar-chart"></i><span>  </span>   {{actv.type}}</p>
+                                                          <hr>
+                                                          <img src="http://www.bebetterdeveloper.com/img/post_img/python-logo.png" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
+                                                      <p style="margin-top:-20px;"> <i class="fa fa-file-text  Try it -o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.description}} </span></p>
+                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}}  </span></p>
+                          <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.startDate}} </span></p>
+                                                        </div>
+                                                    
+<!--                 <form><button class="w3-button w3-block w3-pink block" style="float:left; background-color:white;"> Cancel</button></form>
+ -->                                                    
+                                                    
+                                     
+                                      
+                                   
+                 
+                                                      </div>
 
 
 
-				</div>
+								</div>
 
-</div>
-</div>
-</div> -->
-								<section>
-									<div class="row">
-									{% for actv in data %}
-										<div class="4u 12u$(mobile)">
-											<a href="#" class="image fit"><img src="{% static 'img/work-metiew-smith.jpg' %}" alt=""></a>
-											<h5>Title: {{actv.title}}</h5>
-											<h5>Description: {{actv.description}}</h5>
-											<h5>Volunteers' Capacity: {{actv.volunteer}}</h5>
-											<h5>Attendees' Capacity: {{actv.attendee}}</h5>
-											<h5>Start Date: {{actv.startDate}}</h5>
-											<h5>End Date: {{actv.endDate}}</h5>
-											<h5>Location: {{actv.location}}</h5>
-											<h5>Room: {{actv.room}}</h5>
-										</div>
-											{% endfor %}
-									</div>
-								</section>
+
+								{%endfor%} 								
+							</div>
+
+
+
+
+
+
+
+
+
 							</article>
 
 						<!-- Contact -->
@@ -227,6 +428,23 @@
 					</div>
 
 			</div>
+			<script>
+					
+					function displayText(x){
+						var par = document.getElementById("AJ") ;
+						par.setAttribute("style","display:block");
+						// par.setAttribute("style","color:pink");
+						par.setAttribute("style","margin-top:30px");
+						par.innerHTML=x;
+						}
+						
+						function hideText(y){
+						var par = document.getElementById("AJ") ;
+						par.setAttribute("style","visibility:hidden");
+						
+						}
+									
+									</script>
 
 		<!-- Scripts -->
 			<script src="{% static 'js/jquery.min.js' %}"></script>

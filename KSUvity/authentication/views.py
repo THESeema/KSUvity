@@ -10,17 +10,38 @@ from KSUvity.models import Activity
 from KSUvity.models import Attendee
 from KSUvity.models import Volunteer
 
-from .forms import ActivityForm
-
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render_to_response
 
+import datetime
+from django.utils import timezone
+
 
 @login_required
 def home(request):
-    return render(request, 'student.html')
+    attendee = Attendee.objects.filter(student=request.user)
+    volunteer = Volunteer.objects.filter(student=request.user)
+    today = datetime.datetime.today()
+    tomorrow = timezone.now() + datetime.timedelta(days=1)
+
+
+    upcomingAsAttendee=Activity.objects.filter(attendee=attendee , startDate__gte=today)
+    upcomingAsVolunteer=Activity.objects.filter(volunteer=volunteer, startDate__gte=today)
+
+    HistoryOfAttendance=Activity.objects.filter(attendee=attendee, endDate__lt=today)
+    HistoryOfVolunteer=Activity.objects.filter(volunteer=volunteer, endDate__lt=today)
+
+    for x in upcomingAsAttendee:
+        if x.startDate.date() == tomorrow.date():
+            messages.warning(request, 'REMINDER: You have the '+x.title+' activity coming up tomorrow!', extra_tags='alert')
+
+    for y in upcomingAsVolunteer:
+        if y.startDate.date() == tomorrow.date():
+            messages.warning(request, 'REMINDER: You have the '+y.title+' activity coming up tomorrow!', extra_tags='alert')
+
+    return render(request, 'student.html', {"HistoryOfAttendance": HistoryOfAttendance , "HistoryOfVolunteer": HistoryOfVolunteer , "upcomingAsAttendee": upcomingAsAttendee , "upcomingAsVolunteer": upcomingAsVolunteer , "tomorrow" : tomorrow})
 
 #def dashboard(request):
 #    return render(request, 'dashboard.html')
@@ -92,44 +113,102 @@ def Login(request):
         return render(request, 'login.html')
 
 def admin(request):
-    data=Activity.objects.all()
-    return render(request, 'admin.html', {"data": data})
+    today = datetime.datetime.today()
 
+    upcoming=Activity.objects.filter(owner=request.user , startDate__gte=today)
+    history=Activity.objects.filter(owner=request.user, endDate__lt=today)
+
+    return render(request, 'admin.html', {"upcoming": upcoming , "history": history})
+    
+#def checkUserAttendee(request,pk):
+#    act = Activity.objects.get(pk=pk)
+#    act.save()
+#    attendee = Attendee.objects.get(student=request.user)
+ #   return render(request, 'dashboard.html', {"data2": data2})
 
 def dashboard(request):
-    data=Activity.objects.all()
+    today = datetime.datetime.today()
+    data=Activity.objects.all().exclude(startDate__lt=today)
     return render(request, 'dashboard.html', {"data": data})
 
 def registerAttendee(request,pk):
     act = Activity.objects.get(pk=pk)
     act.save()
     attendee, _ = Attendee.objects.get_or_create(student=request.user)
-    act.attendee.add(attendee)
-    messages.success(request, 'You\'re successfully registered as an attendee!', extra_tags='alert')
-    return redirect('home/#work')
+
+    volunteer = Volunteer.objects.filter(student=request.user)
+
+    ActvsStudentAttending=Activity.objects.filter(attendee=attendee)
+    ActvsStudentVolunteering=Activity.objects.filter(volunteer=volunteer)
+
+    if act.volunteer.filter(student=request.user).exists():
+        messages.error(request, 'You\'re already registered as a volunteer for this activity!', extra_tags='alert')
+        return redirect('home/#work')
+    elif act.attendee.filter(student=request.user).exists():
+        messages.warning(request, 'You\'re already registered as an attendee for this activity!', extra_tags='alert')
+        return redirect('home/#work')
+
+    elif ActvsStudentAttending.exists():
+        for x in ActvsStudentAttending:
+            if x.startDate.date() == act.startDate.date():
+                messages.error(request, 'You\'re already registered in the '+x.title+' activity that is held on the same day as '+act.title+'!', extra_tags='alert')
+                return redirect('home/#work')
+
+    elif ActvsStudentVolunteering.exists():
+        for x in ActvsStudentVolunteering:
+            if x.startDate.date() == act.startDate.date():
+                messages.error(request, 'You\'re already registered in the '+x.title+' activity that is held on the same day as '+act.title+'!', extra_tags='alert')
+                return redirect('home/#work')
+    else:
+        act.attendee.add(attendee)
+        messages.success(request, 'You\'re successfully registered as an attendee!', extra_tags='alert')
+        return redirect('home/#work')
+
 
 def registerVolunteer(request,pk):
     act = Activity.objects.get(pk=pk)
     act.save()
     volunteer, _ = Volunteer.objects.get_or_create(student=request.user)
-    act.volunteer.add(volunteer)
-    messages.success(request, 'You\'re successfully registered as a volunteer!', extra_tags='alert')
-    return redirect('home/#work')
+
+    attendee = Attendee.objects.filter(student=request.user)
+
+    ActvsStudentAttending=Activity.objects.filter(attendee=attendee)
+    ActvsStudentVolunteering=Activity.objects.filter(volunteer=volunteer)
+
+    if act.attendee.filter(student=request.user).exists():
+        messages.error(request, 'You\'re already registered as an attendee for this activity!', extra_tags='alert')
+        return redirect('home/#work')
+    elif act.volunteer.filter(student=request.user).exists():
+        messages.warning(request, 'You\'re already registered as a volunteer for this activity!', extra_tags='alert')
+        return redirect('home/#work')
+
+    elif ActvsStudentVolunteering.exists():
+        for x in ActvsStudentVolunteering:
+            if x.startDate.date() == act.startDate.date():
+                messages.error(request, 'You\'re already registered in the '+x.title+' activity that is held on the same day as '+act.title+'!', extra_tags='alert')
+                return redirect('home/#work')
+
+    elif ActvsStudentAttending.exists():
+        for x in ActvsStudentAttending:
+            if x.startDate.date() == act.startDate.date():
+                messages.error(request, 'You\'re already registered in the '+x.title+' activity that is held on the same day as '+act.title+'!', extra_tags='alert')
+                return redirect('home/#work')
+    else:
+        act.volunteer.add(volunteer)
+        messages.success(request, 'You\'re successfully registered as a volunteer!', extra_tags='alert')
+        return redirect('home/#work')
 
 
 def cancel(request,pk):
     act = Activity.objects.get(pk=pk)
     act.save()
     attendee, _ = Attendee.objects.get_or_create(student=request.user)
+    volunteer, _ = Volunteer.objects.get_or_create(student=request.user)
     act.attendee.remove(attendee)
+    act.volunteer.remove(volunteer)
     messages.success(request, 'You successfully Cancelled Your Registration!', extra_tags='alert')
     return redirect('home/#work')
     
-
-def home2(request):
-    data=Attendee.objects.get(student=request.user)
-    return render(request, 'student.html', {"data": data})
-
 
 # def reset(request):
 #     return render(request, 'reset.html')

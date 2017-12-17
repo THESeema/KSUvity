@@ -12,9 +12,3 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
-
-class ActivityForm(forms.ModelForm):
-
-    class Meta:
-        model = Activity
-        fields = ('type', 'title', 'description', 'owner', 'college', 'location', 'room', 'startDate', 'endDate', 'attendee', 'volunteer', )

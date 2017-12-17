@@ -25,7 +25,6 @@ urlpatterns = [
     # url('^', include('django.contrib.auth.urls')),
     url(r'^$', authentication_views.dashboard, name='dashboard'),
     url(r'^home/', authentication_views.home, name='home'),
-    url(r'^home/', authentication_views.home2, name='home2'),
     url(r'^coord/', authentication_views.admin, name='admin'),
     url(r'^login/$', authentication_views.Login, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': 'dashboard'}, name='logout'),

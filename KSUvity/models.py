@@ -46,6 +46,7 @@ class Activity(models.Model):
     volunteer = models.ManyToManyField(Volunteer, related_name="volunteers",null=True, blank=True)
     created_time = models.DateTimeField(editable=False, auto_now= True)
     modified_time = models.DateTimeField(null=True, blank=True)
+    activity_image = models.ImageField(upload_to = 'pic_folder/', blank=False)
 
     class Meta:
         verbose_name = 'activity'
@@ -53,7 +54,7 @@ class Activity(models.Model):
         ordering = ['-startDate']
 
     def __str__(self):
-        return '%s (%s)' % (self.title, self.description)
+        return '%s (%s) (%s , %s)' % (self.title, self.description, self.startDate, self.endDate)
 
     def __unicode__(self):
         return unicode(self.user)

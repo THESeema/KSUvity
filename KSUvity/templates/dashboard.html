@@ -9,11 +9,177 @@
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <meta http-equiv="X-UA-Compatible" content="IE=edge">
           <link rel="stylesheet" href="{% static 'css/main.css' %}">
-          <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">          
+          <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">     
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">     
 
           <noscript><link rel="stylesheet" href="{% static 'css/noscript.css' %}" /></noscript>
+<script>
+
+$(document).ready(function() { 
+
+(function ($) { 
+$('.tab ul.tabs li a').click(function (g) { 
+var tab = $(this).closest('.tab'), 
+index = $(this).closest('li').index();
+tab.find('ul.tabs > li').removeClass('current');
+$(this).closest('li').addClass('current');
+tab.find('.tab_content').find('div.tabs_item').not('div.tabs_item:eq(' + index + ')').slideUp(1000);
+tab.find('.tab_content').find('div.tabs_item:eq(' + index + ')').slideDown(1000);
+g.preventDefault();
+} );
+})(jQuery);
+
+});
+</script>
 
           <style>
+@import url(https://fonts.googleapis.com/css?family=BenchNine:700);
+
+body:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2980b9 0%, #9B59B6 100%);
+  background-size: 100% auto;
+  opacity: 0;
+  transition: all .65s ease-in-out;
+
+}
+
+.snip1535 {
+  background-color: rgb(0,159,223);
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'BenchNine', Arial, sans-serif;
+  font-size: 1em;
+  font-size: 22px;
+  line-height: 1em;
+  margin: 15px 60px;
+  margin-top:40px;
+  outline: none;
+  padding: 12px 40px 10px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.snip1535:before,
+.snip1535:after {
+  border-color: transparent;
+  transition: all 0.25s;
+  border-style: solid;
+  border-width: 0;
+  content: "";
+  height: 24px;
+  position: absolute;
+  width: 24px;
+}
+.snip1535:before {
+  border-color: #FFD700;
+  border-right-width: 2px;
+  border-top-width: 2px;
+  right: -5px;
+  top: -5px;
+}
+
+.snip1535:after {
+  border-bottom-width: 2px;
+  border-color: #FFD700;
+  border-left-width: 2px;
+  bottom: -5px;
+  left: -5px;
+}
+.snip1535:hover:before,
+.snip1535:hover:after{
+  height: 100%;
+  width: 100%;
+}
+
+.snip1535:hover{
+text-decoration:none;
+color: #FFD700;
+}
+
+.valueUL{
+margin-top:20px;
+}
+/* img{
+  width:100%;
+  margin-left:0px;
+  margin-top:0px ;
+  height:670px;
+}*/
+
+.backbb{
+  background:#f1f1f1;
+  height:100px;
+ margin-top:-120px;
+}
+#showcase .showcase-right{
+  margin-top:90px;
+}
+#testimonial{
+  padding: 20px 0 30px 0;
+  text-align:center;
+}
+
+
+#info1 .info-right{
+  margin-top:90px;
+}
+
+#info2{
+  margin:20px 0 60px 0;
+}
+.n1{
+margin-left:100px;
+}
+
+#center{
+margin-left:45%;
+}
+
+.special{
+color:  rgb(0,159,223);
+padding-left:7px;
+}
+
+
+.tab {
+padding-top: 50px;
+margin-bottom: 200px;
+position: relative;
+overflow: hidden;
+width: 900px;;
+margin: 0 auto;
+line-height: 1.5;
+font-weight: 300;
+color: #888;
+-webkit-font-smoothing: antialiased;
+}
+
+.tabs {
+display: table;
+position: relative;
+overflow: hidden;
+margin: 0;
+width: 900px;
+}
+
+.tabs_item {
+display: none;
+padding: 30px 0;
+}
+
+.testimonial{
+  padding: 20px 0 30px 0;
+  text-align:center;
+}
+
 .team-member {
     background: #fff;
     text-align: center;
@@ -21,20 +187,21 @@
     border: 0.5px solid rgb(190,190,190);
     float:left;
    position: relative;
-   width:30%;
+   width:23%;
    margin-left:5px;
 margin-top:5px;
+/*max-height:120px;*/
     
 }
 
 .nouf{
-margin-top:150px;
+/*margin-top:30px;*/
 margin-left:45px;
 width:100%;
 }
 .team-member .team-photo {
     background: #fff;
-    min-height: 200px;
+    /*min-height: 200px;*/
     margin: 0 auto;
     padding: 24px 24px 32px 24px;
     width:100%;
@@ -68,7 +235,7 @@ width:100%;
 [10. Hover Effects]
 */
 .item-wrap {
-    margin-bottom: 30px;
+    margin-bottom: 80px;
     
 }
 figure {
@@ -183,7 +350,7 @@ figure.effect-zoe figcaption {
     top: auto;
     bottom: 0;
     padding: 0;
-    height: 8em;
+    height: 9.3em;
     background: #a7a7a7;
     border-top: 3px solid #fff;
     color: #5d5d5d;
@@ -204,7 +371,7 @@ figure.effect-zoe:hover p.icon-links a {
             
             .bg {
               /* The image used */
-              background-image: url("{% static 'img/bg_2.svg' %}");
+              background-image: url("{% static 'img/123.jpg' %}");
             
               /* Full height */
               height: 100%; 
@@ -214,6 +381,8 @@ figure.effect-zoe:hover p.icon-links a {
               background-repeat: no-repeat;
               background-size: cover;
             }
+
+
             </style>
         </head>
         <body class="bg">
@@ -246,6 +415,7 @@ figure.effect-zoe:hover p.icon-links a {
                  
                   </a> -->
                   <p style="font-size:15px">
+                    <a class="fa fa-user-o" id={{activity.type}}></a> 
                       Welcome, {{ user.get_full_name }}
                   </p>
                 
@@ -290,8 +460,9 @@ figure.effect-zoe:hover p.icon-links a {
           <li class="l-section section section--is-active">
             <div class="intro">
               <div class="intro--banner">
-                <br>
-                <h1>Your next<br>experience</h1>
+                <br><br><br><br>
+                <h1 style="margin-top: 50px; color:#047E97">KSUvity</h1>
+              
                 {% if user.is_authenticated %}
                 {% if user.is_superuser %}
                 <button onclick="window.location.href='{% url 'admin' %}'">Profile
@@ -316,18 +487,20 @@ figure.effect-zoe:hover p.icon-links a {
                 </button>
                 {% endif %}
                
-                <img  src="{% static 'img/idea.png' %}" alt="Welcome">
+                <img  style=" position: absolute;
+    margin-bottom: 55px;
+    margin-left: 80px;" height="300" width="480" src="{% static 'img/ksuvity.png' %}" alt="Welcome">
               </div>
               <div class="intro--options">
                 <a style="text-decoration:none" href="#0">
                   <h3>About</h3>
-                  <p style="font-size:15px">Manage your activites and have students register for them! </p>
+                  <p style="font-size:15px">All of KSU's campus activites in one place! <br> From workshops, seminars, to competitions and many more.</p>
                 </a>
                 <a style="text-decoration:none" href="#0">
                   <h3>Contact us</h3>
               
                   <!-- <p style="font-size:15px">KSU 5, Poland</p> -->
-                  <p style="font-size:15px">ouremail@gmail.com </p>
+                  <p style="font-size:15px">ksuvity@gmail.com </p>
                   <p style="font-size:15px">+48 12 628 75 6</p>
                   
                 </a>
@@ -340,82 +513,93 @@ figure.effect-zoe:hover p.icon-links a {
             </div>
           </li>
           <li class="l-section section">
-             
-              <h2>Activites </h2>
-
-
-<br>
+  
               <div class="work--lockup" style="margin-left: 50px;">
+                         <p>
+                          <h2 style="margin-top:70px;text-align: center;">Availbale Campus Activities, Join us </h2>
+                          <hr style="width:60%;"></p>
+
+
                   {% for activity in data%}   
+
                   <div class="col-md-3">                                              
                   <div class="nouf" >
                           <div class="team-member">
                               <figure class="effect-zoe">
                                   <div class="team-photo">
-                                      <img src="img/work-metiew-smith" alt="AJ" class="img-responsive">
-                                      <!-- <img src="{% static 'img/work-metiew-smith.jpg' %}" alt="Metiew and Smith" class="img-responsive"> -->
+                                     <img src="{{activity.activity_image.url}}" alt="Activity Image" class="img-responsive" height="1000" width="2000"> 
+              <!--   <img src="{% static 'img/work-metiew-smith.jpg' %}" alt="Metiew and Smith" class="img-responsive"
+                 style="width:200px;"> -->
                                   </div>
                                   <div class="team-attrs">
-                                      <div class="team-name font-accident-two-bold-italic">{{activity.title}}</div>
+                                      <div class="team-name font-accident-two-bold-italic"> {{activity.title}}</div>
                                       <!-- <div class="team-position">Description</div> -->
                                   </div>
                                   <figcaption>
-                                 
-                                      <p class="icon-links">
-                                <!-- <a href="#"><i class="fa fa-calendar-o " id={{activity.startDate}}
-                              onmouseover="displayText(id)" onmouseout="hideText(this)"></i></a> -->
-                              <a href="#"><i class="fa fa-file-text  Try it
-                                -o  " id={{activity.description}}
-                                onmouseover="displayText(id)" onmouseout="hideText(this)"></i></a>
-                                <a href="#!"><i class="fa fa-map-marker" id={{activity.location}}
-                               onmouseover="displayText(this)" onmouseout="hideText(this)"></i></a> 
-                                <a href="#"><i class="fa fa-calendar-o  " id={{activity.startDate}}
-                                  onmouseover="displayText(id)" onmouseout="hideText(this)"></i></a>
-                                  <a href="#"><i class="fa fa-calendar-o  " id={{activity.endDate}}
-                                    onmouseover="displayText(id)" onmouseout="hideText(this)"></i></a>
+                                 <div style="color:white;font-size:15px;text-align:left; ">
+                           <!-- <p class="icon-links" style="margin-top:10px;"> -->
 
-            {% if user.is_authenticated %}
-                    <form method="GET" action="{% url 'register' activity.pk %}">
-                     {% csrf_token %}
-                    <button 
-                    onClick="return showLogoutMessage()"
-                    type="submit" 
-                    class="btn btn-primary" 
-                    id="Register">Register
-                    </button>
-                    </form>
+                              <p style="margin-top:15px;margin-left:20px;">
+                                   <i class="fa fa-bar-chart" id={{activity.type}}></i><span style="margin-left: 3px;"></span>
+                              Type: {{activity.type}}</p>
 
-                    <form method="GET" action="{% url 'volunteer' activity.pk %}">
-                     {% csrf_token %}
-                    <button 
-                    onClick="return showLogoutMessage()"
-                    type="submit" 
-                    class="btn btn-warning" 
-                    id="Register">Volunteer
-                    </button>
-                    </form> 
+                              <p style="margin-top:5px;margin-left:20px;"><i class="fa fa-file-text  Try it -o  " id={{activity.description}}   
+                            ></i> <span style="margin-left: 3px;"></span>Description: {{activity.description}} </p>
 
-                     <form method="GET" action="{% url 'cancel' activity.pk %}">
-                     {% csrf_token %}
-                    <button 
-                    onClick="return showLogoutMessage()"
-                    type="submit" 
-                    class="btn btn-danger" 
-                    id="Register">Cancel
-                    </button>
-                    </form> 
-          {% endif %}
+                                <p style="margin-top:5px;margin-left:20px;"><i class="fa fa-map-marker" id={{activity.location}}
+                              ></i> <span style="margin-left: 3px;"></span>Location: {{activity.location}}</p> 
+
+                               <p style="margin-top:5px;margin-left:20px;"><i class="fa fa-university" id={{activity.college}}
+                                ></i> <span style="margin-left: 3px;"></span> College: {{activity.college}}</p> 
+ 
+                                <p style="margin-top:5px;margin-left:20px;"><i class="fa fa-calendar-o  " id={{activity.startDate}}
+                                 ></i><span style="margin-left: 3px;"></span> Start Date: {{activity.startDate}}</p>
+                                 <p style="margin-top:5px;margin-left:20px;"><i class="fa fa-calendar-o  " id={{activity.endDate}}
+                                 ></i><span style="margin-left: 3px;"></span>End Date: {{activity.endDate}}</p>
+
+                               <!--  </p> -->
+                              </div>
+
+                                      <p class="AJ" style="margin-top:5px;">
+
+                                          <p id="AJ2">
 
 
-                                      </p>
+                                          </p>
+                                          {% if user.is_authenticated %}
+                                          {% if not user.is_superuser %}
 
-                                      <p id="AJ">
+                                          <form method="GET" action="{% url 'register' activity.pk %}">
+                                           {% csrf_token %}
+                                          <button 
+                                          onClick="return showLogoutMessage()"
+                                          type="submit" 
+                                          class="btn btn-primary" 
+                                          id="Register" style="float:left; width:90px;margin-left:55px;margin-top:0px;">Attend
+                                          </button>
+                                          </form>
+
+                      
+                                          <form method="GET" action="{% url 'volunteer' activity.pk %}">
+                                           {% csrf_token %}
+                                          <button 
+                                          onClick="return showLogoutMessage()"
+                                          type="submit" 
+                                          class="btn btn-warning" 
+                                          id="Register"  style="float:left;margin-left:5px;margin-top:0px;">Volunteer
+                                          </button>
+                                          </form> 
+                      
+                                {% endif %}
+                                {% endif %}
                                       </p>
                                   </figcaption>
                               </figure>
                       </div>
                   </div>
                 </div>
+
+        
                   {%endfor%} 
 
                 </div>
@@ -439,23 +623,6 @@ figure.effect-zoe:hover p.icon-links a {
     </ul>
     {% endif %}
     </div>
-
-
-<script>
-
-function displayText(x){
-  var par = document.getElementById("AJ") ;
-  par.setAttribute("style","display:block");
-  par.innerHTML=x;
-  }
-  
-  function hideText(y){
-  var par = document.getElementById("AJ") ;
-  par.setAttribute("style","visibility:hidden");
-  
-  }
-        
-        </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
