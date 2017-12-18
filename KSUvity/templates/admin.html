@@ -343,8 +343,8 @@ figure.effect-zoe:hover p.icon-links a {
 								</header>
 					
            <div class="page-header" style="text-align: center;">
-<a class="btn btn-primary btn-lg round" id="addTask"  href="http://ksuvity.pythonanywhere.com/admin/KSUvity/activity/add/">Add An Activity</a>     
-<a class="btn btn-primary btn-lg round" id="addTask"  href="http://ksuvity.pythonanywhere.com/admin/KSUvity/activity/">Edit An Activity</a>     </div>
+<a class="btn btn-primary btn-lg round" id="addTask"  href="http://127.0.0.1:8000/admin/KSUvity/activity/add/">Add An Activity</a>     
+<a class="btn btn-primary btn-lg round" id="addTask"  href="http://127.0.0.1:8000/admin/KSUvity/activity/">Edit An Activity</a>     </div>
 
        									      <div style ="height: 48px;
     width: 100%;
@@ -442,20 +442,23 @@ figure.effect-zoe:hover p.icon-links a {
 
 {% for actv in history %}
 
-<div class="col-md-6">                                              
+                                  <div class="col-md-6">                                              
                                
-                                  <div class="w3-card-4 swe444" style="float:left;width:100%;">
+                                  <div class="w3-card-4 swe444" style="float:left;width:100%;font-size:17px;">
                                                         <header class="w3-container w3-light-blue">
                                                           <h3>{{actv.title}}</h3>
                                                         </header>
                                                         <div class="w3-container" style=" background:white;">
                                                           <p style="text-align:center; margin-top:-15px"> <i class="fa fa-bar-chart"></i><span>  </span>   {{actv.type}}</p>
                                                           <hr>
-                                                          <img src="{{actv.activity_image.url}}" style="width:60px; margin-top:10px">
+                                                          <img src="{{actv.activity_image.url}}" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:100px; height:130px;margin-top:-30px">
                                                       <p style="margin-top:-20px;"> <i class="fa fa-file-text  Try it -o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.description}} </span></p>
-                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}} - {{actv.room}} </span></p>
+                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}} - {{actv.room}}</span></p>
                           <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.startDate}} </span></p>
                           <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.endDate}} </span></p>
+
+
+
                                                         </div>
                                                     
 <!--                 <form><button class="w3-button w3-block w3-pink block" style="float:left; background-color:white;"> Cancel</button></form>
