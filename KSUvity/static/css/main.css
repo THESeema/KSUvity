@@ -652,7 +652,7 @@ body {
 }
 
 .side-nav li:nth-child(1)::before {
-    content: "01"
+    content: ""
 }
 
 .side-nav li:nth-child(2)::before {
@@ -685,7 +685,7 @@ body {
 }
 
 .side-nav li.is-active::before {
-    /* left: -33px; */
+    left: -33px;
     color: #fff
 }
 
