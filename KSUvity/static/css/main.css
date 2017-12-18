@@ -652,11 +652,11 @@ body {
 }
 
 .side-nav li:nth-child(1)::before {
-    content: ""
+    content: "01"
 }
 
 .side-nav li:nth-child(2)::before {
-    content: "Activites"
+    content: "02"
 }
 
 .side-nav li:nth-child(3)::before {
