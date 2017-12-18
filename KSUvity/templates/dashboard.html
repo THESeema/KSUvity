@@ -201,7 +201,8 @@ width:100%;
 }
 .team-member .team-photo {
     background: #fff;
-    /*min-height: 200px;*/
+    max-height: 200px;
+    height: 170px;
     margin: 0 auto;
     padding: 24px 24px 32px 24px;
     width:100%;
@@ -461,7 +462,7 @@ figure.effect-zoe:hover p.icon-links a {
         <nav class="l-side-nav">
           <ul class="side-nav">
             <li class="is-active"><span>Home</span></li>
-            <li><span>Activites</span></li>
+            <li><span></span></li>
             <!-- <li><span>About</span></li> -->
             <!-- <li><span>Contact</span></li>
             <li><span>Hire us</span></li> -->
@@ -516,7 +517,7 @@ figure.effect-zoe:hover p.icon-links a {
   
               <div class="work--lockup" style="margin-left: 50px;">
                          <p>
-                          <h2 style="margin-top:70px;text-align: center;">Availbale Campus Activities, Join us </h2>
+                          <h2 style="margin-top:70px;text-align: center;">Availbale Campus Activities, Join us! </h2>
                           <hr style="width:60%;"></p>
 
 
@@ -527,7 +528,7 @@ figure.effect-zoe:hover p.icon-links a {
                           <div class="team-member">
                               <figure class="effect-zoe">
                                   <div class="team-photo">
-                                     <img src="{{activity.activity_image.url}}" alt="Activity Image" class="img-responsive" height="1000" width="2000"> 
+                                     <img src="{{activity.activity_image.url}}" alt="Activity Image" class="img-responsive"> 
               <!--   <img src="{% static 'img/work-metiew-smith.jpg' %}" alt="Metiew and Smith" class="img-responsive"
                  style="width:200px;"> -->
                                   </div>
@@ -575,7 +576,7 @@ figure.effect-zoe:hover p.icon-links a {
                                           onClick="return showLogoutMessage()"
                                           type="submit" 
                                           class="btn btn-primary" 
-                                          id="Register" style="float:left; width:90px;margin-left:55px;margin-top:0px;">Attend
+                                          id="Register" style="float:left; width:90px;margin-left:30px;margin-top:0px;">Attend
                                           </button>
                                           </form>
 
@@ -619,7 +620,7 @@ figure.effect-zoe:hover p.icon-links a {
     {% if request.get_full_path == dashboard_url %}
     <ul class="outer-nav">
     <li class="is-active">Home</li>
-    <li>Activites</li>
+    <li>Activities</li>
     </ul>
     {% endif %}
     </div>

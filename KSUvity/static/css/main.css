@@ -12,7 +12,7 @@
     src: local("☺"), url("fonts/Montserrat-Bold.woff") format("woff"), url("fonts/Montserrat-Bold.ttf") format("truetype"), url("fonts/Montserrat-Bold.svg") format("svg");
     font-weight: 700;
     font-style: normal
-}
+} 
 
 @font-face {
     font-family: 'Montserrat';
@@ -637,8 +637,8 @@ body {
     color: #fff;
     font-size: 14px;
     font-weight: 300;
-    opacity: 0;
-    visibility: hidden
+    opacity: 0
+    /* visibility: hidden */
 }
 
 .side-nav>li::before {
@@ -648,6 +648,7 @@ body {
     color: #555;
     font-size: 14px;
     font-weight: 300
+    
 }
 
 .side-nav li:nth-child(1)::before {
@@ -684,7 +685,7 @@ body {
 }
 
 .side-nav li.is-active::before {
-    left: -33px;
+    /* left: -33px; */
     color: #fff
 }
 

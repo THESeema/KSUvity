@@ -144,9 +144,16 @@ def registerAttendee(request,pk):
     if act.volunteer.filter(student=request.user).exists():
         messages.error(request, 'You\'re already registered as a volunteer for this activity!', extra_tags='alert')
         return redirect('home/#work')
+
     elif act.attendee.filter(student=request.user).exists():
         messages.warning(request, 'You\'re already registered as an attendee for this activity!', extra_tags='alert')
         return redirect('home/#work')
+
+    elif ActvsStudentVolunteering.exists():
+        for x in ActvsStudentVolunteering:
+            if x.startDate.date() == act.startDate.date():
+                messages.error(request, 'You\'re already registered in the '+x.title+' activity that is held on the same day as '+act.title+'!', extra_tags='alert')
+                return redirect('home/#work')
 
     elif ActvsStudentAttending.exists():
         for x in ActvsStudentAttending:
@@ -154,15 +161,10 @@ def registerAttendee(request,pk):
                 messages.error(request, 'You\'re already registered in the '+x.title+' activity that is held on the same day as '+act.title+'!', extra_tags='alert')
                 return redirect('home/#work')
 
-    elif ActvsStudentVolunteering.exists():
-        for x in ActvsStudentVolunteering:
-            if x.startDate.date() == act.startDate.date():
-                messages.error(request, 'You\'re already registered in the '+x.title+' activity that is held on the same day as '+act.title+'!', extra_tags='alert')
-                return redirect('home/#work')
-    else:
-        act.attendee.add(attendee)
-        messages.success(request, 'You\'re successfully registered as an attendee!', extra_tags='alert')
-        return redirect('home/#work')
+    act.attendee.add(attendee)
+    messages.success(request, 'You\'re successfully registered as an attendee!', extra_tags='alert')
+    return redirect('home/#work')
+
 
 
 def registerVolunteer(request,pk):
@@ -178,9 +180,16 @@ def registerVolunteer(request,pk):
     if act.attendee.filter(student=request.user).exists():
         messages.error(request, 'You\'re already registered as an attendee for this activity!', extra_tags='alert')
         return redirect('home/#work')
+
     elif act.volunteer.filter(student=request.user).exists():
         messages.warning(request, 'You\'re already registered as a volunteer for this activity!', extra_tags='alert')
         return redirect('home/#work')
+
+    elif ActvsStudentAttending.exists():
+        for x in ActvsStudentAttending:
+            if x.startDate.date() == act.startDate.date():
+                messages.error(request, 'You\'re already registered in the '+x.title+' activity that is held on the same day as '+act.title+'!', extra_tags='alert')
+                return redirect('home/#work')
 
     elif ActvsStudentVolunteering.exists():
         for x in ActvsStudentVolunteering:
@@ -188,15 +197,9 @@ def registerVolunteer(request,pk):
                 messages.error(request, 'You\'re already registered in the '+x.title+' activity that is held on the same day as '+act.title+'!', extra_tags='alert')
                 return redirect('home/#work')
 
-    elif ActvsStudentAttending.exists():
-        for x in ActvsStudentAttending:
-            if x.startDate.date() == act.startDate.date():
-                messages.error(request, 'You\'re already registered in the '+x.title+' activity that is held on the same day as '+act.title+'!', extra_tags='alert')
-                return redirect('home/#work')
-    else:
-        act.volunteer.add(volunteer)
-        messages.success(request, 'You\'re successfully registered as a volunteer!', extra_tags='alert')
-        return redirect('home/#work')
+    act.volunteer.add(volunteer)
+    messages.success(request, 'You\'re successfully registered as a volunteer!', extra_tags='alert')
+    return redirect('home/#work')
 
 
 def cancel(request,pk):

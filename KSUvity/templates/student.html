@@ -41,6 +41,83 @@ g.preventDefault();
 </script>
 
 		<style>
+    .btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 10px 16px;
+}
+
+  
+.btn-lg {
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: gray;
+  border-color: #285e8e;
+}
+
+/***********************
+  ROUND BUTTONS
+************************/
+.round {
+  border-radius: 24px;
+}
+
+/***********************
+  CUSTON BTN VALUES
+************************/
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+
+.btn-primary {
+    background: #F47F18;
+    color: #ffffff;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: grays;
+}
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
 @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
 
 body:after {
@@ -548,7 +625,7 @@ figure.effect-zoe:hover p.icon-links a {
 			<div id="wrapper" >
 
 				<!-- Nav -->
-
+        
 					<nav id="nav">
 						<a href="#me" class="icon fa-user active"><span>Profile</span></a>
 						<a href="#work" class="icon fa-calendar"><span>My Activities</span></a>
@@ -564,10 +641,10 @@ figure.effect-zoe:hover p.icon-links a {
 							<article id="me" class="panel">
 
 								<header>
-									<h1>Welcome, {{ user.get_full_name }}</h1>
-									<p style="font-size:23px">Your email address: {{ user.email }}</p>
+									<h1 style="color:gray; ">Welcome, {{ user.get_full_name }}</h1>
+									<p style="font-size: 100%;">Your email address: {{ user.email }}</p>
 									
-									<p style="margin-top: 100px;">	<a href="{% url 'change_password' %}" class="btn btn-info" role="button">Change Password</a>
+									<p style="margin-top: 100px;">	<a href="{% url 'change_password' %}" class="btn btn-primary btn-lg round" role="button" role="button">Change Password</a>
 									</p>
 								</header>
 								
@@ -581,41 +658,41 @@ figure.effect-zoe:hover p.icon-links a {
 							</article>
 
 						<!-- Work -->
-							<article id="work" class="panel" style="background-color:pink;">
+							<article id="work" class="panel">
 								<header>
 										{% include 'messages.html' %}
-									<h1 style="text-align: center;">My Activites</h1>
+                    <center>
+									<h1 style="color:gray ; font-size: 240%;">My Activites<h1></center> 
 </header>
 
- <div class="tab" style="width:100%;text-align:center;">
-<ul class="tabs" style="background:#f1f1f1;margin-left: 0px;">
-<li><a href="#" class="snip1535" style="float:left;" >UPCOMING</a></li>
-<li><a href="#" class="snip1535"  style="float:left;">HISTORY</a></li>
-</ul> <!-- / tabs -->
 
-<div class="tab_content">
-
-<div class="tabs_item">
-
-                <div class="page-header">       
-                  <h3> Upcoming Activities</h3>
-                 <h4> Attending: </h4>
+								<div class="page-header">  
+                <div style ="height: 48px;
+    width: 100%;
+   
+    background-color: #D1D1D0;">  
+        <center>
+									<h3 style= "color:white; font-family:'impact';font-size: 200% ; text-shadow: 2px 2px gray;"> Upcoming Activities</h3> </center>
+                </div>
+                 <h4 style="color:gray ;font-size: 150%;"> Attending: </h4>
 
             <div class="row">
-                {% for actv in upcomingAsAttendee %}
-                <div class="col-md-6">                                              
+								{% for actv in upcomingAsAttendee %}
+								<div class="col-md-6">                                          
+
                                
                                   <div class="w3-card-4 swe444" style="float:left;width:100%;">
-                                                        <header class="w3-container w3-light-blue">
+                                                        <header class="w3-container w3-light-blue" st>
                                                           <h3>{{actv.title}}</h3>
                                                         </header>
                                                         <div class="w3-container" style=" background:white;">
                                                           <p style="text-align:center; margin-top:-15px"> <i class="fa fa-bar-chart"></i><span>  </span>   {{actv.type}}</p>
                                                           <hr>
-                                                          <img src="http://www.bebetterdeveloper.com/img/post_img/python-logo.png" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
+                                                          <img src="{{actv.activity_image.url}}" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
                                                       <p style="margin-top:-20px;"> <i class="fa fa-file-text  Try it -o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.description}} </span></p>
-                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}}  </span></p>
+                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}} - {{actv.room}}  </span></p>
                           <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.startDate}} </span></p>
+                                                    <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.endDate}} </span></p>
                                                         </div>
                                                     
 <!--                 <form><button class="w3-button w3-block w3-pink block" style="float:left; background-color:white;"> Cancel</button></form>
@@ -637,17 +714,17 @@ figure.effect-zoe:hover p.icon-links a {
 
 
 
-                </div>
-                {%endfor%}                
-              </div>
+								</div>
+								{%endfor%} 								
+							</div>
 
 
-  <div class="page-header">       
-           <h4> Volunteering: </h4>
+	<div class="page-header">       
+           <h4 style="color:gray ;font-size: 150%;"> Volunteering: </h4>
             <div class="row">
 
-                {% for actv in upcomingAsVolunteer %}
-                              <div class="col-md-6">                                              
+								{% for actv in upcomingAsVolunteer %}
+															<div class="col-md-6">                                              
                                
                                   <div class="w3-card-4 swe444" style="float:left;width:100%;">
                                                         <header class="w3-container w3-light-blue">
@@ -656,16 +733,13 @@ figure.effect-zoe:hover p.icon-links a {
                                                         <div class="w3-container" style=" background:white;">
                                                           <p style="text-align:center; margin-top:-15px"> <i class="fa fa-bar-chart"></i><span>  </span>   {{actv.type}}</p>
                                                           <hr>
-                                                          <img src="http://www.bebetterdeveloper.com/img/post_img/python-logo.png" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
+                                                          <img src="{{actv.activity_image.url}}" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
                                                       <p style="margin-top:-20px;"> <i class="fa fa-file-text  Try it -o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.description}} </span></p>
-                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}}  </span></p>
+                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}} - {{actv.room}} </span></p>
                           <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.startDate}} </span></p>
+                          <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.endDate}} </span></p>
                                                         </div>
                                                     
-<!--                 <form><button class="w3-button w3-block w3-pink block" style="float:left; background-color:white;"> Cancel</button></form>
- -->                                                    
-                                                    
-                                     
                                       
                                    
                    <form method="GET" action="{% url 'cancel' actv.pk %}">
@@ -682,21 +756,28 @@ figure.effect-zoe:hover p.icon-links a {
 
 
                 </div>
-                {%endfor%}                
-              </div>
+								{%endfor%} 								
+							</div>
 
-</div> <!-- / tabs_item -->
 
-<div class="tabs_item">
 
-              <div class="page-header">       
-                  <h3>Activities' History</h3>
+							<div class="page-header">  
+
+                    <div style ="height: 48px;
+    width: 100%;
+   
+    background-color: #D1D1D0;">  
+        <center>
+                  <h3 style= "color:white; font-family:'impact';font-size: 200% ; text-shadow: 2px 2px gray;"> Activities' History</h3> </center>
+                </div>
+
+									
 
             <div class="row">
-                        <h4> Attended in: </h4>
+                        <h4 style="color:gray ;font-size: 150%;"> Attended in: </h4>
 
-                {% for actv in HistoryOfAttendance %}
-                                
+								{% for actv in HistoryOfAttendance %}
+																
 <div class="col-md-6">                                              
                                
                                   <div class="w3-card-4 swe444" style="float:left;width:100%;">
@@ -706,10 +787,11 @@ figure.effect-zoe:hover p.icon-links a {
                                                         <div class="w3-container" style=" background:white;">
                                                           <p style="text-align:center; margin-top:-15px"> <i class="fa fa-bar-chart"></i><span>  </span>   {{actv.type}}</p>
                                                           <hr>
-                                                          <img src="http://www.bebetterdeveloper.com/img/post_img/python-logo.png" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
+                                                          <img src="{{actv.activity_image.url}}" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
                                                       <p style="margin-top:-20px;"> <i class="fa fa-file-text  Try it -o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.description}} </span></p>
-                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}}  </span></p>
+                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}} - {{actv.room}} </span></p>
                           <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.startDate}} </span></p>
+                          <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.endDate}} </span></p>
                                                         </div>
                                                     
 <!--                 <form><button class="w3-button w3-block w3-pink block" style="float:left; background-color:white;"> Cancel</button></form>
@@ -734,16 +816,16 @@ figure.effect-zoe:hover p.icon-links a {
                 </div>
 
                                          
-                {%endfor%}                
-              </div>
+								{%endfor%} 								
+							</div>
 
 
-  <div class="page-header">       
+	<div class="page-header">       
 
             <div class="row">
-            <h4> Volunteered in: </h4>
-                {% for actv in HistoryOfVolunteer %}
-                              
+            <h4 style="color:gray ;font-size: 150%;"> Volunteered in: </h4>
+								{% for actv in HistoryOfVolunteer %}
+															
                                    <div class="col-md-6">                                              
                                
                                   <div class="w3-card-4 swe444" style="float:left;width:100%;">
@@ -753,17 +835,13 @@ figure.effect-zoe:hover p.icon-links a {
                                                         <div class="w3-container" style=" background:white;">
                                                           <p style="text-align:center; margin-top:-15px"> <i class="fa fa-bar-chart"></i><span>  </span>   {{actv.type}}</p>
                                                           <hr>
-                                                          <img src="http://www.bebetterdeveloper.com/img/post_img/python-logo.png" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
+                                                          <img src="{{actv.activity_image.url}}" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:60px; margin-top:10px">
                                                       <p style="margin-top:-20px;"> <i class="fa fa-file-text  Try it -o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.description}} </span></p>
-                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}}  </span></p>
+                          <p> <i class="fa fa-map-marker" style="margin-left:8px;"></i><span style="margin-left:17px;">{{actv.location}} - {{actv.room}} </span></p>
                           <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.startDate}} </span></p>
+                          <p> <i class="fa fa-calendar-o" style="margin-left:8px;"></i><span style="margin-left:9px;"> {{actv.endDate}} </span></p>
                                                         </div>
                                                     
-<!--                 <form><button class="w3-button w3-block w3-pink block" style="float:left; background-color:white;"> Cancel</button></form>
- -->                                                    
-                                                    
-                                     
-                                      
                                    
                    <form method="GET" action="{% url 'cancel' actv.pk %}">
                                            {% csrf_token %}
@@ -780,59 +858,12 @@ figure.effect-zoe:hover p.icon-links a {
 
                 </div>
                                    
-                {%endfor%}                
-              </div>
-
-</div> <!-- / tabs_item -->
-
-<div class="tabs_item">
-<img  src="Untitled_burned.png"
-style=" width: 250px;
-float: left;
-margin-right: 30px;
-"
->
-<h2>VISION</h2>
-<p>bLA BLA BLA
-</p> </div> <!-- / tabs_item -->
-</div> <!-- / tab_content -->
-</div> <!-- / tab -->
-
-
-
-
-
-
+								{%endfor%} 								
+							</div>
+</div>
 
 							</article>
 
-						<!-- Contact -->
-							<article id="contact" class="panel">
-								<!-- <header>
-									<h2>Contact Me</h2>
-								</header>
-								<form action="#" method="post">
-									<div>
-										<div class="row">
-											<div class="6u 12u$(mobile)">
-												<input type="text" name="name" placeholder="Name" />
-											</div>
-											<div class="6u$ 12u$(mobile)">
-												<input type="text" name="email" placeholder="Email" />
-											</div>
-											<div class="12u$">
-												<input type="text" name="subject" placeholder="Subject" />
-											</div>
-											<div class="12u$">
-												<textarea name="message" placeholder="Message" rows="8"></textarea>
-											</div>
-											<div class="12u$">
-												<input type="submit" value="Send Message" />
-											</div>
-										</div>
-									</div>
-								</form> -->
-							</article>
 
 					</div>
 
